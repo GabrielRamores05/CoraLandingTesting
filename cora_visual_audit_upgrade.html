@@ -1,0 +1,414 @@
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+.wrap { padding: 1rem 0; font-size: 14px; color: var(--color-text-primary); }
+.section { margin-bottom: 2rem; }
+.sh { font-size: 16px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 0.5px solid var(--color-border-tertiary); display: flex; align-items: center; gap: 8px; }
+.card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: 12px; padding: 14px 16px; margin-bottom: 10px; }
+.card-grid { display: grid; gap: 10px; }
+.g2 { grid-template-columns: 1fr 1fr; }
+.badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 20px; margin-bottom: 6px; }
+.b-red { background: var(--color-background-danger); color: var(--color-text-danger); }
+.b-amber { background: var(--color-background-warning); color: var(--color-text-warning); }
+.b-green { background: var(--color-background-success); color: var(--color-text-success); }
+.b-blue { background: var(--color-background-info); color: var(--color-text-info); }
+.b-gray { background: var(--color-background-secondary); color: var(--color-text-secondary); }
+.issue-title { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px; }
+.issue-body { font-size: 12px; color: var(--color-text-secondary); line-height: 1.6; }
+.fix { font-size: 11px; color: var(--color-text-success); margin-top: 8px; padding-top: 8px; border-top: 0.5px solid var(--color-border-tertiary); }
+.before-after { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+.ba-box { border-radius: 8px; padding: 10px 12px; font-size: 12px; line-height: 1.5; }
+.before { background: var(--color-background-danger); color: var(--color-text-danger); }
+.after { background: var(--color-background-success); color: var(--color-text-success); }
+.ba-label { font-size: 10px; font-weight: 500; opacity: 0.7; margin-bottom: 4px; letter-spacing: 0.05em; text-transform: uppercase; }
+.tab-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+.tab { padding: 5px 12px; font-size: 12px; border-radius: 20px; border: 0.5px solid var(--color-border-secondary); background: var(--color-background-secondary); color: var(--color-text-secondary); cursor: pointer; }
+.tab.active { background: var(--color-background-info); color: var(--color-text-info); border-color: var(--color-border-info); }
+.tab-content { display: none; }
+.tab-content.show { display: block; }
+.score-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 0.5px solid var(--color-border-tertiary); }
+.score-row:last-child { border-bottom: none; }
+.score-label { font-size: 12px; color: var(--color-text-primary); flex: 1; }
+.score-bar-wrap { width: 120px; height: 6px; background: var(--color-background-secondary); border-radius: 3px; }
+.score-bar { height: 6px; border-radius: 3px; }
+.score-num { font-size: 12px; font-weight: 500; min-width: 28px; text-align: right; }
+.upgrade-row { display: flex; gap: 10px; align-items: flex-start; padding: 10px 0; border-bottom: 0.5px solid var(--color-border-tertiary); }
+.upgrade-row:last-child { border-bottom: none; }
+.u-num { width: 24px; height: 24px; border-radius: 50%; background: var(--color-background-warning); color: var(--color-text-warning); font-size: 11px; font-weight: 500; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+.u-body { flex: 1; }
+.u-title { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 3px; }
+.u-desc { font-size: 12px; color: var(--color-text-secondary); line-height: 1.5; }
+.u-fix { font-size: 11px; color: var(--color-text-success); margin-top: 5px; }
+.section-audit { display: flex; gap: 10px; align-items: flex-start; padding: 12px 0; border-bottom: 0.5px solid var(--color-border-tertiary); }
+.section-audit:last-child { border-bottom: none; }
+.sa-icon { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+.sa-body { flex: 1; }
+.sa-title { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 2px; }
+.sa-desc { font-size: 12px; color: var(--color-text-secondary); line-height: 1.5; }
+.rating { display: inline-flex; gap: 2px; margin-left: 6px; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--color-border-secondary); }
+.dot.on { background: #e07b00; }
+</style>
+
+<div class="wrap">
+
+<div class="tab-row">
+  <div class="tab active" onclick="showTab('visual')">Visual Issues</div>
+  <div class="tab" onclick="showTab('sections')">Section-by-Section</div>
+  <div class="tab" onclick="showTab('missing')">What's Missing</div>
+  <div class="tab" onclick="showTab('copy')">Copy Rewrites</div>
+  <div class="tab" onclick="showTab('scores')">Page Score</div>
+</div>
+
+<div id="tab-visual" class="tab-content show">
+  <div class="section">
+    <div class="sh"><i class="ti ti-eye" aria-hidden="true"></i> Visual problems I can see in your screenshot</div>
+
+    <div class="card">
+      <span class="badge b-red">Critical — first 3 seconds</span>
+      <div class="issue-title">The giant orange "Cora" logo dominates your hero</div>
+      <div class="issue-body">In your screenshot, the very first thing a visitor sees is your logo (huge, centered) — not a value proposition. Your brain processes images before text. Right now, visitors spend their first 2 seconds reading a brand name they don't know yet. That attention should go to your headline.</div>
+      <div class="before-after">
+        <div class="ba-box before"><div class="ba-label">Now</div>Giant logo → eyebrow text → headline → description → buttons</div>
+        <div class="ba-box after"><div class="ba-label">Should be</div>Small nav logo + Outcome headline (huge) → subheadline → CTA button → trust signals</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="badge b-red">Critical — credibility</span>
+      <div class="issue-title">Stats show "0+" and "0+" — looks broken</div>
+      <div class="issue-body">I can clearly see in your screenshot: the hero stats area shows "0+" for at least two of the three metrics. Even if this is a JS animation that starts at 0, on a slow connection or before JS loads, visitors literally see "0+ cooperatives served" and "0+ members." That destroys credibility instantly.</div>
+      <div class="fix">✦ Fix: Hardcode the real numbers in HTML. Let JS animate them up, but the fallback must always be the real stat.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge b-amber">High — visual hierarchy</span>
+      <div class="issue-title">Two equal-weight hero buttons — no clear primary action</div>
+      <div class="issue-body">Both buttons look similar in visual weight. "See How It Works" (outline) and "Get Offline Cora" (filled dark) compete for attention. When everything is equally important, nothing is important. Your #1 goal should dominate visually.</div>
+      <div class="before-after">
+        <div class="ba-box before"><div class="ba-label">Now</div>[SEE HOW IT WORKS] [GET OFFLINE CORA] — equal weight</div>
+        <div class="ba-box after"><div class="ba-label">Should be</div>[BOOK FREE DEMO →] big orange filled · "or view offline edition" small text link below</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="badge b-amber">High — visual noise</span>
+      <div class="issue-title">The "Challenges" section cards look disconnected and small</div>
+      <div class="issue-body">From the screenshot, the 4 challenge cards are small white squares with icons that are hard to read at a glance. The active card (dark green) is only subtly different. The grid feels like a feature list, not an emotional connection to the reader's pain.</div>
+      <div class="fix">✦ Fix: Make each card bigger. Use a large pain-point headline inside each card instead of tiny text. The active state should be dramatically different — maybe an illustrated icon or a full-bleed dark card.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge b-amber">High — wasted real estate</span>
+      <div class="issue-title">"Our Purpose" section is a huge amount of white space for very little content</div>
+      <div class="issue-body">Your Purpose section has about 60% white space. One label, a giant "Our Purpose" title, a thin line, one sentence, and one attribution. That's a full viewport of space for 2 sentences. This kills scroll momentum and makes the page feel unfinished.</div>
+      <div class="fix">✦ Fix: Merge Purpose into your Hero or About section. Or expand it with 3 value pillars: Accuracy · Compliance · Transparency — each with an icon and 2-line description.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge b-amber">High — confusing layout</span>
+      <div class="issue-title">"Your Cooperative Your Choice" section has tiny laptop images</div>
+      <div class="issue-body">The Offline vs Online comparison shows two laptop images that are too small to convey the product's quality. Visitors can't actually see what the software looks like. The "OFFLINE" and "ONLINE" tab labels are so small they're barely readable.</div>
+      <div class="fix">✦ Fix: Full-width comparison. Left: large laptop mockup of offline UI. Right: large browser mockup of online UI. Big feature bullets under each. Clear "Get Offline" and "Try Online" CTAs.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge b-blue">Medium — mobile</span>
+      <div class="issue-title">The topbar contact info is gone on mobile but leaves a dark green stripe</div>
+      <div class="issue-body">Your topbar with the phone number and address is CSS-hidden on mobile but the dark green bar still shows (just empty). This wastes 40px of valuable above-the-fold space on mobile where every pixel matters.</div>
+      <div class="fix">✦ Fix: Set the entire topbar to display:none on mobile, not just the contact items. Or keep it but show only "0962 807 3120" (the most important info).</div>
+    </div>
+
+    <div class="card">
+      <span class="badge b-blue">Medium — trust</span>
+      <div class="issue-title">Partner logos are too faded (28% opacity grayscale)</div>
+      <div class="issue-body">Your carousel logos use filter: grayscale(100%) opacity: 0.28 — they're almost invisible. Social proof only works if people can actually see and recognize the logos. Faded logos signal "we're embarrassed by these partners" rather than "look who trusts us."</div>
+      <div class="fix">✦ Fix: opacity: 0.55 minimum. On hover: opacity 1 + color (you already have this). Or keep them in color at 70% opacity to make them more recognizable.</div>
+    </div>
+  </div>
+</div>
+
+<div id="tab-sections" class="tab-content">
+  <div class="section">
+    <div class="sh"><i class="ti ti-layout" aria-hidden="true"></i> Every section rated and diagnosed</div>
+    <div class="card">
+
+      <div class="section-audit">
+        <div class="sa-icon">🟥</div>
+        <div class="sa-body">
+          <div class="sa-title">Topbar — rating: 2/5 <span class="rating"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></div>
+          <div class="sa-desc">Has phone, email, address, and social icons — good info. But dark green bar is too heavy visually and wastes space on mobile. Email (Gmail!) signals "small startup" which erodes trust for enterprise coop buyers.</div>
+        </div>
+      </div>
+
+      <div class="section-audit">
+        <div class="sa-icon">🟥</div>
+        <div class="sa-body">
+          <div class="sa-title">Hero — rating: 2/5 <span class="rating"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></div>
+          <div class="sa-desc">Headline is feature-focused not outcome-focused. Giant logo wastes above-fold space. Two equal CTAs. Stats show 0. No urgency signal. No trust badges. Despite looking polished, this hero converts poorly because it doesn't answer "why should I care?" fast enough.</div>
+        </div>
+      </div>
+
+      <div class="section-audit">
+        <div class="sa-icon">🟨</div>
+        <div class="sa-body">
+          <div class="sa-title">Challenges grid — rating: 3/5 <span class="rating"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div>
+          <div class="sa-desc">Good idea — resonates with the pain. But the cards are too small and the copy is too short to create emotional connection. The right column description is solid. Missing: a "Does this sound familiar?" opener that names specific scenarios.</div>
+        </div>
+      </div>
+
+      <div class="section-audit">
+        <div class="sa-icon">🟥</div>
+        <div class="sa-body">
+          <div class="sa-title">Our Purpose — rating: 1/5 <span class="rating"><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></div>
+          <div class="sa-desc">Almost no content for a full-height section. "Our Purpose" as a title is corporate and boring — visitors don't care about your purpose, they care about their problem. This section currently kills scroll momentum completely.</div>
+        </div>
+      </div>
+
+      <div class="section-audit">
+        <div class="sa-icon">🟩</div>
+        <div class="sa-body">
+          <div class="sa-title">Partners / Cooperatives Growing — rating: 4/5 <span class="rating"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div>
+          <div class="sa-desc">Best section on the page. Real logos, real names, real numbers. The circular logo rings look professional. Only issues: the animated counter starts at 0 visibly, and there are no testimonial quotes from these partners to go with the logos.</div>
+        </div>
+      </div>
+
+      <div class="section-audit">
+        <div class="sa-icon">🟨</div>
+        <div class="sa-body">
+          <div class="sa-title">Serving Cooperatives (founder photo) — rating: 3/5 <span class="rating"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div>
+          <div class="sa-desc">Having the founder's photo humanizes the brand — great. But the "Built for Cooperatives" callout box says "No credit card or technical knowledge required. Receive Google Meet link via email." That's operational instructions, not a value promise. This section should be about the founder's story and WHY CORA exists.</div>
+        </div>
+      </div>
+
+      <div class="section-audit">
+        <div class="sa-icon">🟩</div>
+        <div class="sa-body">
+          <div class="sa-title">CORA in Action (interactive demo) — rating: 4/5 <span class="rating"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div>
+          <div class="sa-desc">This is genuinely impressive and rare. Most landing pages just show screenshots. An interactive dashboard preview builds product confidence fast. Issues: it shows "0 members" everywhere (same data problem), and the section header "See CORA in action" undersells it — it should say something like "This is exactly what your cooperative will see."</div>
+        </div>
+      </div>
+
+      <div class="section-audit">
+        <div class="sa-icon">🟨</div>
+        <div class="sa-body">
+          <div class="sa-title">Your Cooperative Your Choice (offline/online) — rating: 3/5 <span class="rating"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div>
+          <div class="sa-desc">Good concept — differentiation is important. But the laptop images are too small and the feature details are hidden behind a hover/click. Most visitors won't discover the features. This needs to be a proper comparison table or two feature panels visible by default.</div>
+        </div>
+      </div>
+
+      <div class="section-audit">
+        <div class="sa-icon">🟩</div>
+        <div class="sa-body">
+          <div class="sa-title">Footer — rating: 4/5 <span class="rating"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div>
+          <div class="sa-desc">Clean, professional dark green footer with logo, links, contact info. Good. Missing: a final CTA ("Still have questions? Book a demo"), the Gmail email looks unprofessional (get a @cora-ph.com domain email), and some footer links go to "#".</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="tab-missing" class="tab-content">
+  <div class="section">
+    <div class="sh"><i class="ti ti-plus" aria-hidden="true"></i> What's completely missing from your page</div>
+
+    <div class="card-grid">
+
+      <div class="card">
+        <span class="badge b-red">Missing — High Impact</span>
+        <div class="issue-title">No testimonials / quotes from real users</div>
+        <div class="issue-body">You have 7 partner logos but not a single quote from any of them. A treasurer from NBAC saying "We used to spend 3 days on monthly reports. Now it takes 2 hours." would be 10× more powerful than any feature description you write.</div>
+        <div class="fix">✦ Add: 3 testimonial cards after the partner logos section. Photo + name + role + specific result. This is the #1 missing conversion element.</div>
+      </div>
+
+      <div class="card">
+        <span class="badge b-red">Missing — High Impact</span>
+        <div class="issue-title">No pricing section (even a range or "contact us")</div>
+        <div class="issue-body">Cooperative managers are budget-conscious. The absence of pricing creates anxiety — their mind defaults to "probably expensive." Even "Contact us for pricing tailored to your cooperative size" with a CTA removes this blocker.</div>
+        <div class="fix">✦ Add a simple 2-card pricing section: Offline Edition (one-time fee) vs Online Edition (monthly/annual). Or at minimum a "Pricing" anchor in the nav.</div>
+      </div>
+
+      <div class="card">
+        <span class="badge b-red">Missing — High Impact</span>
+        <div class="issue-title">No FAQ section</div>
+        <div class="issue-body">Your buyers (board chairs, treasurers, accountants) have specific objections: "Is this CDA-compliant?" "What if we have no internet?" "Do we need IT staff?" "Can we migrate our existing data?" None of these are answered on the page.</div>
+        <div class="fix">✦ Add 5–6 FAQ items above the footer. Answer: CDA compliance, offline capability, data migration, technical support, pricing, and data security.</div>
+      </div>
+
+      <div class="card">
+        <span class="badge b-amber">Missing — Medium Impact</span>
+        <div class="issue-title">No "How It Works" section (3 steps)</div>
+        <div class="issue-body">Visitors don't understand the journey from "interested" to "using CORA." A simple 3-step flow — "Book Demo → Get Setup → Go Live" — reduces perceived effort and makes committing feel less scary.</div>
+        <div class="fix">✦ Add a 3-step visual section: 1. Book your free 1-hour demo · 2. We set up your cooperative data · 3. Your team goes live in 48 hours</div>
+      </div>
+
+      <div class="card">
+        <span class="badge b-amber">Missing — Medium Impact</span>
+        <div class="issue-title">No urgency or scarcity signal visible on the page</div>
+        <div class="issue-body">You have 2 real demo dates (June 17 and 19) and limited spots — but this information is completely hidden inside the modal. It should be visible on the page itself to create FOMO for visitors who haven't clicked yet.</div>
+        <div class="fix">✦ Add near the hero CTA: "Next demo: Thursday June 19 · 3 spots remaining" as a small orange badge</div>
+      </div>
+
+      <div class="card">
+        <span class="badge b-amber">Missing — Medium Impact</span>
+        <div class="issue-title">No video or product tour</div>
+        <div class="issue-body">A 60-90 second screen recording of CORA in use — even a Loom video — would dramatically increase time-on-page and trust. Video visitors convert at 80% higher rates than non-video visitors in B2B SaaS.</div>
+        <div class="fix">✦ Record a 90-second Loom of the member management flow. Embed it in the "See CORA in action" section alongside the interactive preview.</div>
+      </div>
+
+      <div class="card">
+        <span class="badge b-blue">Missing — Lower Impact</span>
+        <div class="issue-title">No live chat or WhatsApp button</div>
+        <div class="issue-body">Cooperative managers will have questions before booking. A WhatsApp button (common in PH B2B) gives them a low-friction way to ask without committing to a demo. Your phone number is in the topbar but not clickable as a WhatsApp link.</div>
+        <div class="fix">✦ Add floating WhatsApp button: wa.me/639628073120 — converts well in Philippine market</div>
+      </div>
+
+      <div class="card">
+        <span class="badge b-blue">Missing — Lower Impact</span>
+        <div class="issue-title">No "As seen in" or authority badges</div>
+        <div class="issue-body">Even one media mention, award, or government affiliation (like "Registered with SEC" or "CDA-Accredited Technology Partner") would significantly boost credibility for risk-averse cooperative boards.</div>
+        <div class="fix">✦ If you have any: add "Featured in:", "Registered with:", "Member of:" section near the footer or hero.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="tab-copy" class="tab-content">
+  <div class="section">
+    <div class="sh"><i class="ti ti-pencil" aria-hidden="true"></i> Copy rewrites — before vs after</div>
+
+    <div class="card">
+      <div class="issue-title">Hero headline</div>
+      <div class="before-after">
+        <div class="ba-box before"><div class="ba-label">Current (feature-focused)</div>"One System for All Cooperative Operations."</div>
+        <div class="ba-box after"><div class="ba-label">Rewrite (outcome-focused)</div>"Stop Losing Days to Manual Records. Run Your Cooperative in One Screen."</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="issue-title">Hero subheadline</div>
+      <div class="before-after">
+        <div class="ba-box before"><div class="ba-label">Current (40+ words, too long)</div>"Membership, savings, loans, accounting, and CDA-ready reporting — connected and continuously updated so your boards, accountants, and treasurers always work from the same source of truth."</div>
+        <div class="ba-box after"><div class="ba-label">Rewrite (punchy, specific)</div>"Manage members, loans, savings, and CDA reports — all in one system built specifically for Philippine cooperatives."</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="issue-title">Primary CTA button</div>
+      <div class="before-after">
+        <div class="ba-box before"><div class="ba-label">Current (vague)</div>"SEE HOW IT WORKS FOR MY COOPERATIVE"</div>
+        <div class="ba-box after"><div class="ba-label">Rewrite (action + value)</div>"Book My Free 1-Hour Demo →"</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="issue-title">"Our Purpose" section</div>
+      <div class="before-after">
+        <div class="ba-box before"><div class="ba-label">Current (generic)</div>"To empower cooperatives with modern, reliable, and transparent financial management tools."</div>
+        <div class="ba-box after"><div class="ba-label">Rewrite (specific + emotional)</div>"We watched cooperative treasurers spend entire weekends manually reconciling records. We built CORA so that never happens again."</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="issue-title">Services section header</div>
+      <div class="before-after">
+        <div class="ba-box before"><div class="ba-label">Current (generic)</div>"See CORA in action."</div>
+        <div class="ba-box after"><div class="ba-label">Rewrite (specific + personal)</div>"This is exactly what your cooperative will see on day one."</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="issue-title">Founder callout box</div>
+      <div class="before-after">
+        <div class="ba-box before"><div class="ba-label">Current (operational)</div>"No credit card or technical knowledge required. Receive Google Meet link via email."</div>
+        <div class="ba-box after"><div class="ba-label">Rewrite (value promise)</div>"In 60 minutes, you'll see exactly how CORA eliminates manual work for your specific cooperative type — guaranteed."</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="issue-title">Partners section headline</div>
+      <div class="before-after">
+        <div class="ba-box before"><div class="ba-label">Current (passive)</div>"Cooperatives growing with CORA."</div>
+        <div class="ba-box after"><div class="ba-label">Rewrite (active + proof)</div>"14 cooperatives across Bicol already run on CORA. Here's who joined."</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="tab-scores" class="tab-content">
+  <div class="section">
+    <div class="sh"><i class="ti ti-chart-bar" aria-hidden="true"></i> Your page scored across 10 conversion dimensions</div>
+    <div class="card">
+
+      <div class="score-row">
+        <span class="score-label">Visual design quality</span>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:75%;background:#22c55e;"></div></div>
+        <span class="score-num" style="color:#22c55e">75</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">Hero clarity (5-second test)</span>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:35%;background:#ef4444;"></div></div>
+        <span class="score-num" style="color:#ef4444">35</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">Social proof strength</span>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:45%;background:#f59e0b;"></div></div>
+        <span class="score-num" style="color:#f59e0b">45</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">Lead capture friction</span>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:20%;background:#ef4444;"></div></div>
+        <span class="score-num" style="color:#ef4444">20</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">Urgency / scarcity signals</span>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:10%;background:#ef4444;"></div></div>
+        <span class="score-num" style="color:#ef4444">10</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">Objection handling / FAQ</span>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:15%;background:#ef4444;"></div></div>
+        <span class="score-num" style="color:#ef4444">15</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">Copy quality (outcome focus)</span>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:40%;background:#f59e0b;"></div></div>
+        <span class="score-num" style="color:#f59e0b">40</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">Mobile experience</span>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:55%;background:#f59e0b;"></div></div>
+        <span class="score-num" style="color:#f59e0b">55</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">Product demo / trust</span>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:80%;background:#22c55e;"></div></div>
+        <span class="score-num" style="color:#22c55e">80</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">WhatsApp / re-engagement</span>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:5%;background:#ef4444;"></div></div>
+        <span class="score-num" style="color:#ef4444">5</span>
+      </div>
+
+      <div style="margin-top:16px;padding-top:12px;border-top:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;justify-content:space-between;">
+        <span style="font-size:13px;color:var(--color-text-secondary);">Overall conversion score</span>
+        <span style="font-size:22px;font-weight:500;color:#f59e0b;">38 / 100</span>
+      </div>
+      <div style="margin-top:6px;font-size:12px;color:var(--color-text-secondary);">Potential after fixes: <span style="color:#22c55e;font-weight:500;">78–85 / 100</span></div>
+    </div>
+  </div>
+</div>
+
+</div>
+<script>
+function showTab(id) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('show'));
+  document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('show');
+  event.target.classList.add('active');
+}
+</script>

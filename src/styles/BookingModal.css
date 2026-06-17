@@ -1,0 +1,320 @@
+.booking_modal_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  animation: modalOverlayIn 0.22s ease forwards;
+}
+
+.booking_modal {
+  background-color: white;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  animation: modalCardIn 0.28s cubic-bezier(0.2, 0, 0, 1) forwards;
+  position: relative;
+}
+
+.modal_progress {
+  padding: 20px 30px 0;
+}
+
+.progress_bar {
+  width: 100%;
+  height: 6px;
+  background: rgba(22, 48, 21, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.progress_fill {
+  height: 100%;
+  background: rgb(22, 48, 21);
+  transition: width 0.3s ease;
+}
+
+.progress_text {
+  font-size: 12px;
+  color: rgba(22, 48, 21, 0.6);
+  font-weight: 600;
+}
+
+.cora_modal_close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: rgb(22, 48, 21);
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+}
+
+.cora_modal_close:hover {
+  opacity: 1;
+}
+
+.step_content {
+  padding: 20px 30px 30px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1;
+  min-height: 0;
+}
+
+.form_row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.checkbox_group {
+  margin-top: 8px;
+  display: flex;
+  justify-content: center;
+}
+
+.checkbox_label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.checkbox_label input {
+  width: auto;
+  min-height: auto;
+  accent-color: #e07b00;
+}
+
+.step_title {
+  font-size: 20px;
+  font-weight: 700;
+  color: rgb(22, 48, 21);
+  margin: 0 0 10px;
+  text-align: center;
+}
+
+.step_intro {
+  font-size: 14px;
+  color: #6e6e73;
+  text-align: center;
+  margin: 0 0 24px;
+}
+
+.coop_type_grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.coop_type_tile {
+  padding: 20px;
+  background: #f9fbf9;
+  border: 2px solid rgba(22, 48, 21, 0.15);
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgb(22, 48, 21);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.coop_type_tile:hover,
+.coop_type_tile.selected {
+  background: rgb(22, 48, 21);
+  color: white;
+  border-color: rgb(22, 48, 21);
+}
+
+.form_group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form_group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(22, 48, 21);
+}
+
+.form_group input,
+.form_group select {
+  border: 2px solid rgb(22, 48, 21);
+  padding: 12px;
+  font-size: 14px;
+  font-family: inherit;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+  min-height: 46px;
+  border-radius: 6px;
+}
+
+.form_group input:focus,
+.form_group select:focus {
+  outline: none;
+  border-color: #ff9900;
+}
+
+.btn_submit {
+  border: none;
+  background-color: #ff9900;
+  color: white;
+  padding: 14px 30px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.btn_submit:hover {
+  background-color: #e68a00;
+}
+
+.step_buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.btn_secondary {
+  background: none;
+  border: 2px solid rgb(22, 48, 21);
+  color: rgb(22, 48, 21);
+  padding: 10px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn_secondary:hover {
+  background: rgba(22, 48, 21, 0.08);
+}
+
+.thank_you_screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+  gap: 20px;
+}
+
+.thank_you_icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgb(22, 48, 21);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.thank_you_icon svg {
+  width: 30px;
+  height: 30px;
+  stroke: white;
+}
+
+.thank_you_title {
+  font-size: 24px;
+  font-weight: 700;
+  color: rgb(22, 48, 21);
+  margin: 0;
+}
+
+.thank_you_text {
+  font-size: 15px;
+  color: rgba(22, 48, 21, 0.6);
+  line-height: 1.7;
+  max-width: 400px;
+  margin-bottom: 20px;
+}
+
+.review_summary {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.review_item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(22, 48, 21, 0.08);
+}
+
+.review_item:last-child {
+  border-bottom: none;
+}
+
+.review_label {
+  font-size: 13px;
+  color: #6e6e73;
+  font-weight: 500;
+}
+
+.review_value {
+  font-size: 13px;
+  color: rgb(22, 48, 21);
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .booking_modal_overlay {
+    align-items: flex-end;
+  }
+
+  .booking_modal {
+    width: 100%;
+    max-width: 100%;
+    height: 92vh;
+    max-height: 92vh;
+    border-radius: 12px 12px 0 0;
+  }
+
+  .step_content {
+    padding: 15px 20px 20px;
+  }
+
+  .coop_type_grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .booking_modal {
+    width: 98%;
+    height: 95vh;
+    max-height: 95vh;
+  }
+
+  .coop_type_tile {
+    padding: 16px;
+    font-size: 12px;
+  }
+}

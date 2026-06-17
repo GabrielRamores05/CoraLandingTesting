@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("/fonts/SFPRODISPLAYREGULAR.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("/fonts/SFPRODISPLAYBOLD.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border-radius: 0 !important;
+  }
+
+  /* Keep circular shapes (avatars, spinners, icon dots) round */
+  .serving_name_card,
+  .contact_modal_close,
+  .contact_spinner,
+  .whatsapp_float,
+  .cora_legend_dot,
+  .cora_pulse_icon,
+  .topbar_social_link img {
+    border-radius: 0 !important;
+  }
+
+  html,
+  body,
+  #root {
+    width: 100%;
+    min-height: 100vh;
+    font-family: "SF Pro Display", sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  button, a, [role="button"], input[type="submit"], input[type="button"] {
+    cursor: pointer;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  html.cora_modal_open,
+  body.cora_modal_open {
+    overflow: hidden;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}

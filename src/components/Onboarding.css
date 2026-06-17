@@ -1,0 +1,202 @@
+/* ══════════════════════════════════
+   ONBOARDING SECTION
+══════════════════════════════════ */
+.ob_section {
+  background: rgb(22, 48, 21);
+  padding: 112px 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative dot grids */
+.ob_dots {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+  will-change: transform;
+}
+.ob_dots--tl { top: -40px; left: -40px; }
+.ob_dots--br { bottom: -40px; right: -40px; }
+
+.ob_container {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Header */
+.ob_header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 72px;
+}
+
+.ob_eyebrow {
+  display: block;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #e07b00;
+  margin-bottom: 20px;
+}
+
+.ob_title {
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 20px;
+}
+
+.ob_title span {
+  color: #e07b00;
+}
+
+.ob_sub {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.62);
+  line-height: 1.75;
+}
+
+/* Steps grid */
+.ob_steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 64px;
+  perspective: 1200px;
+}
+
+.ob_step {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.ob_step:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(224, 123, 0, 0.35);
+}
+
+.ob_step_num {
+  font-size: 56px;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.06);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  position: absolute;
+  top: 20px;
+  right: 24px;
+}
+
+.ob_step_icon {
+  width: 52px;
+  height: 52px;
+  background: rgba(224, 123, 0, 0.15);
+  border: 1px solid rgba(224, 123, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  color: #e07b00;
+  flex-shrink: 0;
+}
+
+.ob_step_icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.ob_step_badge {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #e07b00;
+  margin-bottom: 14px;
+}
+
+.ob_step_title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin-bottom: 14px;
+}
+
+.ob_step_body {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.62);
+  line-height: 1.7;
+  flex: 1;
+}
+
+/* Badge strip at bottom */
+.ob_badge_strip {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 28px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.ob_badge_item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.01em;
+}
+
+.ob_badge_item svg {
+  width: 18px;
+  height: 18px;
+  color: #e07b00;
+  flex-shrink: 0;
+}
+
+.ob_badge_divider {
+  width: 1px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.12);
+  flex-shrink: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .ob_section { padding: 80px 32px; }
+  .ob_steps { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto 48px; }
+  .ob_step_num { font-size: 44px; }
+  .ob_badge_strip { padding: 24px 28px; gap: 24px; }
+  .ob_badge_divider { display: none; }
+}
+
+@media (max-width: 640px) {
+  .ob_section { padding: 64px 20px; }
+  .ob_header { margin-bottom: 48px; }
+  .ob_step { padding: 28px 24px; }
+  .ob_step_title { font-size: 18px; }
+  .ob_badge_strip { padding: 20px; }
+  .ob_badge_item { font-size: 13px; }
+}
+
+@media (max-width: 400px) {
+  .ob_section { padding: 48px 16px; }
+  .ob_badge_item span { font-size: 12px; }
+}

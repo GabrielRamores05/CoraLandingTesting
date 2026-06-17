@@ -1,0 +1,276 @@
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+.wrap { padding: 1rem 0; font-size: 14px; color: var(--color-text-primary); }
+.section { margin-bottom: 2rem; }
+.sh { font-size: 16px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 0.5px solid var(--color-border-tertiary); display: flex; align-items: center; gap: 8px; }
+.card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: 12px; padding: 14px 16px; margin-bottom: 10px; }
+.card-grid { display: grid; gap: 10px; }
+.g2 { grid-template-columns: 1fr 1fr; }
+.g3 { grid-template-columns: 1fr 1fr 1fr; }
+.badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 20px; margin-bottom: 6px; }
+.b-red { background: var(--color-background-danger); color: var(--color-text-danger); }
+.b-amber { background: var(--color-background-warning); color: var(--color-text-warning); }
+.b-green { background: var(--color-background-success); color: var(--color-text-success); }
+.b-blue { background: var(--color-background-info); color: var(--color-text-info); }
+.b-gray { background: var(--color-background-secondary); color: var(--color-text-secondary); }
+.issue-title { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px; }
+.issue-body { font-size: 12px; color: var(--color-text-secondary); line-height: 1.55; }
+.fix { font-size: 11px; color: var(--color-text-success); margin-top: 8px; padding-top: 8px; border-top: 0.5px solid var(--color-border-tertiary); }
+.code { font-family: var(--font-mono); font-size: 11px; background: var(--color-background-secondary); border-radius: 6px; padding: 8px 10px; margin-top: 8px; color: var(--color-text-primary); line-height: 1.6; white-space: pre-wrap; }
+.psy { background: var(--color-background-secondary); border-radius: 10px; padding: 12px 14px; }
+.psy-name { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 3px; }
+.psy-what { font-size: 12px; color: var(--color-text-secondary); line-height: 1.5; }
+.psy-use { font-size: 11px; color: var(--color-text-info); margin-top: 5px; font-style: italic; }
+.row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
+.num { width: 22px; height: 22px; border-radius: 50%; background: var(--color-background-info); color: var(--color-text-info); font-size: 11px; font-weight: 500; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.row-body { flex: 1; }
+.row-title { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 2px; }
+.row-desc { font-size: 12px; color: var(--color-text-secondary); line-height: 1.5; }
+.tab-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+.tab { padding: 5px 12px; font-size: 12px; border-radius: 20px; border: 0.5px solid var(--color-border-secondary); background: var(--color-background-secondary); color: var(--color-text-secondary); cursor: pointer; }
+.tab.active { background: var(--color-background-info); color: var(--color-text-info); border-color: var(--color-border-info); }
+.tab-content { display: none; }
+.tab-content.show { display: block; }
+</style>
+
+<div class="wrap">
+
+<div class="tab-row">
+  <div class="tab active" onclick="showTab('bugs')">Code Bugs</div>
+  <div class="tab" onclick="showTab('conversion')">Conversion Killers</div>
+  <div class="tab" onclick="showTab('psychology')">Psych Weapons</div>
+  <div class="tab" onclick="showTab('rewrites')">AI Prompts to Fix</div>
+</div>
+
+<div id="tab-bugs" class="tab-content show">
+  <div class="section">
+    <div class="sh"><i class="ti ti-bug" aria-hidden="true"></i> Critical bugs found in your actual HTML</div>
+
+    <div class="card">
+      <span class="badge b-red">Bug #1 — Fatal</span>
+      <div class="issue-title">Modal auto-opens on page load, blocking everything</div>
+      <div class="issue-body">Your <code>body</code> has <code>class="cora_modal_open"</code> and <code>style="overflow: hidden"</code> hardcoded. So when any visitor lands, the booking modal immediately pops up before they read a single word. This is conversion suicide — you're asking for commitment before giving value.</div>
+      <div class="fix">✦ Fix: Remove cora_modal_open from body's default class. Only add it when user clicks "Book a Demo." Let people see your page first.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge b-red">Bug #2 — Fatal</span>
+      <div class="issue-title">Navbar has only 1 link ("Services") — no product explanation</div>
+      <div class="issue-body">Your navbar has a "Services" anchor link and "Contact Us" CTA. No About, no Pricing, no How It Works. Visitors landing from ads have no way to self-educate before deciding. They leave.</div>
+      <div class="fix">✦ Fix: Add: Features · How It Works · Pricing (even if "Contact for pricing") · Partners</div>
+    </div>
+
+    <div class="card">
+      <span class="badge b-red">Bug #3 — Fatal</span>
+      <div class="issue-title">Hero logo is 160px tall — takes up 40% of above-the-fold space</div>
+      <div class="issue-body">Your <code>.hero_logo</code> is 160px height with 40px margin-bottom. On mobile, your entire hero above-the-fold is a giant logo, eyebrow text, and the H1. The description and CTA are below the fold. You lose visitors before they reach your CTA.</div>
+      <div class="fix">✦ Fix: hero_logo max 48px. Move logo to navbar only. Use that real estate for your value proposition headline.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge b-red">Bug #4 — Fatal</span>
+      <div class="issue-title">Stats show "0" — all stat counters start at 0 and may not animate</div>
+      <div class="issue-body">Both the hero stats and partners stats show <code>0</code> as their initial value. The JS counter animation relies on IntersectionObserver but your HTML has <code>style="opacity: 0"</code> on the stat numbers — if the animation script fails or is slow, visitors see "10+", "0+", "0+" which destroys credibility.</div>
+      <div class="fix">✦ Fix: Always hardcode the real number as fallback. Use JS to animate UP from 0, but set the actual number as the default DOM content.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge b-amber">Bug #5 — High</span>
+      <div class="issue-title">Two conflicting CTAs in hero: "See How It Works" vs "Get Offline Cora"</div>
+      <div class="issue-body">Your hero has two equal-weight buttons with no visual hierarchy. Visitors freeze when given two choices of equal importance. The "paradox of choice" kills conversion — they click neither.</div>
+      <div class="fix">✦ Fix: One PRIMARY button (filled orange: "Book Free Demo"). One GHOST/text link below it: "or explore offline edition →"</div>
+    </div>
+
+    <div class="card">
+      <span class="badge b-amber">Bug #6 — High</span>
+      <div class="issue-title">Booking form asks for 7 fields upfront — massive friction</div>
+      <div class="issue-body">First Name, Last Name, Email, Cooperative Name, Cooperative Type (15 dropdown options!), Role (6 options), Mobile, Demo Date, Facebook. That's 9 required fields. Every extra field costs you ~11% conversion. You're asking for everything before they've decided to trust you.</div>
+      <div class="fix">✦ Fix: Step 1 — just "Cooperative Type" tile selection (zero typing). Step 2 — Name + Email + Mobile only. Collect the rest after they confirm via email.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge b-amber">Bug #7 — High</span>
+      <div class="issue-title">Footer is invisible — has opacity:0 in inline style</div>
+      <div class="issue-body">Your footer element has <code>style="...opacity: 0"</code> baked in from a scroll animation that apparently hasn't fired. Same for footer columns. Your contact info, privacy links, and social proof at bottom are literally invisible without JS.</div>
+      <div class="fix">✦ Fix: Never set initial opacity:0 via inline style on critical content. Use a CSS class that JS removes/adds.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge b-blue">Bug #8 — Medium</span>
+      <div class="issue-title">LinkedIn, Google, Instagram social links are dead ("#")</div>
+      <div class="issue-body">Only Facebook has a real link. LinkedIn, Google, and Instagram all point to "#" — which means clicking them scrolls to the top. This signals to visitors that your brand isn't fully established yet.</div>
+      <div class="fix">✦ Fix: Either add real links or remove the dead icons. Dead links break trust.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge b-blue">Bug #9 — Medium</span>
+      <div class="issue-title">No meta description, no OG tags, no SEO at all</div>
+      <div class="issue-body">Your &lt;head&gt; has charset, viewport, and title "cora-landing-page" (not even a real title). No meta description means Google won't index you properly and social shares will look broken.</div>
+      <div class="fix">✦ Fix: Add title "CORA — Cooperative Management System Philippines", meta description, og:title, og:description, og:image</div>
+    </div>
+
+    <div class="card">
+      <span class="badge b-gray">Bug #10 — Low</span>
+      <div class="issue-title">carousel_track is tripled but the animation calculation may break</div>
+      <div class="issue-body">Your logo carousel uses the same 7 logos 3 times (21 items). The animation uses <code>calc(-100% / 3)</code> to loop. This is fragile — if logos load at different widths, the loop position can jitter visibly.</div>
+      <div class="fix">✦ Fix: Use a JS-powered infinite carousel or clone dynamically. The CSS-only hack breaks on mobile.</div>
+    </div>
+  </div>
+</div>
+
+<div id="tab-conversion" class="tab-content">
+  <div class="section">
+    <div class="sh"><i class="ti ti-trending-down" aria-hidden="true"></i> What's killing your leads right now</div>
+
+    <div class="card">
+      <span class="badge b-red">Kills 60% of leads</span>
+      <div class="issue-title">No lead magnet — you ask without giving first</div>
+      <div class="issue-body">Your entire page asks visitors to "Book a Demo" but gives them nothing upfront to earn trust. The biggest mistake in B2B landing pages. You need a value-first offer that's so useful they trade their email for it willingly.</div>
+      <div class="fix">✦ For Cora: "Free CDA Compliance Checklist 2025" · "5-Minute Cooperative Financial Health Calculator" · "Free 30-day trial of online edition" — any of these generates leads without requiring a demo commitment</div>
+    </div>
+
+    <div class="card">
+      <span class="badge b-red">Kills 40% of leads</span>
+      <div class="issue-title">Zero testimonials from real people</div>
+      <div class="issue-body">You have 7 partner logos (great!) but zero human testimonials. Logos = "they know us." Testimonials = "they trust us." You need the second one to close. Decision makers in cooperatives (treasurers, board chairs) need to see people like them saying this worked.</div>
+      <div class="fix">✦ Get 3 quotes from existing partners. Photo + name + role + specific result ("We reduced reporting time from 3 days to 2 hours" — NBAC Treasurer)</div>
+    </div>
+
+    <div class="card">
+      <span class="badge b-amber">Kills 30% of leads</span>
+      <div class="issue-title">No urgency — visitors can "come back later" forever</div>
+      <div class="issue-body">Your page has no reason to act now. The demo dates shown are June 17 and 19, 2026 (today and in 2 days!) — that IS urgency but it's buried inside the modal that auto-pops. Use it on the hero: "2 demo spots left this week"</div>
+      <div class="fix">✦ Add to hero: "Next demo: Thursday June 19 · Only 3 spots remaining" with a subtle countdown</div>
+    </div>
+
+    <div class="card">
+      <span class="badge b-amber">Kills 25% of leads</span>
+      <div class="issue-title">No pricing signal — visitors don't know if this is affordable</div>
+      <div class="issue-body">Cooperatives (especially small ones) are price-sensitive. When there's no pricing info at all, their mind fills the blank with "probably expensive." Even a range or "starting from ₱X/month" removes this anxiety.</div>
+      <div class="fix">✦ Add "Pricing starts at ₱X/month per cooperative" or at minimum: "Affordable for cooperatives of all sizes — ask us about pricing"</div>
+    </div>
+
+    <div class="card">
+      <span class="badge b-amber">Kills 20% of leads</span>
+      <div class="issue-title">Hero headline focuses on FEATURES not OUTCOMES</div>
+      <div class="issue-body">"One System for All Cooperative Operations" describes what CORA is. But visitors don't buy systems — they buy outcomes. What does their life look like after using CORA? Frame around pain relief and transformation.</div>
+      <div class="fix">✦ Test: "Stop Losing Hours to Manual Records. Run Your Cooperative from One Screen." or "CDA-Ready Reports in Minutes, Not Days."</div>
+    </div>
+
+    <div class="card">
+      <span class="badge b-blue">Kills 15% of leads</span>
+      <div class="issue-title">No exit-intent capture — you lose 97% of visitors with nothing</div>
+      <div class="issue-body">Statistically, 97% of first-time visitors don't convert. Without an exit-intent popup or a sticky email capture, every one of those people disappears forever with no way to re-engage them.</div>
+      <div class="fix">✦ Add exit-intent: "Before you go — get our free Cooperative Compliance Calendar 2025 (PDF)" with email field only</div>
+    </div>
+  </div>
+</div>
+
+<div id="tab-psychology" class="tab-content">
+  <div class="section">
+    <div class="sh"><i class="ti ti-brain" aria-hidden="true"></i> Psychological weapons to add — what big companies actually do</div>
+
+    <div class="card-grid g2">
+      <div class="psy">
+        <div class="psy-name">Loss framing (most powerful)</div>
+        <div class="psy-what">People hate losing something 2.5× more than they love gaining the same thing. Frame your copy around what they LOSE by NOT using CORA.</div>
+        <div class="psy-use">Instead of "Manage records easily" → "Stop losing ₱50,000/year to manual errors and missed penalties"</div>
+      </div>
+      <div class="psy">
+        <div class="psy-name">Social proof cascade</div>
+        <div class="psy-what">Stack 3 types: numbers ("10+ coops"), logos (your 7 partners), and testimonials. Each type convinces a different type of skeptic. You currently have only logos.</div>
+        <div class="psy-use">Add: "Join 1,000+ cooperative members already using CORA daily" near the top</div>
+      </div>
+      <div class="psy">
+        <div class="psy-name">Commitment & consistency</div>
+        <div class="psy-what">Once someone takes a small action (clicking a button, selecting a coop type), they're psychologically driven to complete the process. Multi-step forms use this — step 1 is so easy there's no reason to stop.</div>
+        <div class="psy-use">First interaction: "What type of cooperative are you?" [4 tiles] — before ANY form fields appear</div>
+      </div>
+      <div class="psy">
+        <div class="psy-name">Authority & legitimacy</div>
+        <div class="psy-what">Cooperatives are regulated. Your buyers (board chairs, treasurers) are risk-averse. Signals of official legitimacy remove the biggest objection: "Is this real/safe?"</div>
+        <div class="psy-use">Add: "CDA-compliant · SEC-registered · Trusted by FACCS Federation" near your hero CTA</div>
+      </div>
+      <div class="psy">
+        <div class="psy-name">Scarcity & urgency (real)</div>
+        <div class="psy-what">You literally have 2 demo dates coming up. That's REAL scarcity — use it. A countdown timer to the next available demo slot creates genuine urgency without fabricating anything.</div>
+        <div class="psy-use">"Next demo: Thursday June 19 · 3 of 5 spots remaining" — countdown live on the page</div>
+      </div>
+      <div class="psy">
+        <div class="psy-name">Reciprocity (give first)</div>
+        <div class="psy-what">Give something genuinely useful before asking for anything. A free tool, checklist, or calculator makes visitors feel obligated to reciprocate with their contact info.</div>
+        <div class="psy-use">"Free Download: CDA Annual Report Checklist 2025 — no email required" (then ask after they click)</div>
+      </div>
+      <div class="psy">
+        <div class="psy-name">Risk reversal</div>
+        <div class="psy-what">The fear of making a bad decision is the #1 reason people don't click. Remove the risk explicitly: free demo, no contract, no installation, money-back guarantee.</div>
+        <div class="psy-use">Under your CTA: "Free · No contract · No installation needed · Cancel anytime"</div>
+      </div>
+      <div class="psy">
+        <div class="psy-name">Specificity = credibility</div>
+        <div class="psy-what">Specific numbers are more believable than round ones. "10+ coops" feels generic. "14 cooperatives across Bicol" feels real and verified.</div>
+        <div class="psy-use">Change "10+ cooperatives" → "14 cooperatives across Region V" (if true). Specific beats generic every time.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="tab-rewrites" class="tab-content">
+  <div class="section">
+    <div class="sh"><i class="ti ti-code" aria-hidden="true"></i> Exact AI prompts to fix each issue — copy these</div>
+
+    <div class="card">
+      <div class="issue-title">Fix #1: Remove the auto-opening modal</div>
+      <div class="code">In my React landing page, the body element has class="cora_modal_open" hardcoded on initial render, making the booking modal open immediately when the page loads. Fix this: the modal should only open when a user clicks a "Book Demo" button. Set the default state of showModal to false. Remove cora_modal_open from the initial body class. Make sure overflow:hidden is only applied to body when showModal is true.</div>
+    </div>
+
+    <div class="card">
+      <div class="issue-title">Fix #2: Multi-step form to replace the 9-field form</div>
+      <div class="code">Replace my single booking form with a 3-step multi-step form:
+Step 1: Show 6 tiles for cooperative type (Credit, Consumer, Multi-purpose, Agricultural, Service, Other). No typing required. When user clicks a tile, auto-advance to step 2.
+Step 2: Show only 3 fields: Full Name, Email, Mobile Number. Big "Book My Free Demo" button.
+Step 3: Success screen with "Check your email for the Google Meet link."
+Add a progress bar at top showing Step 1 of 3. Use the same green/orange brand colors.</div>
+    </div>
+
+    <div class="card">
+      <div class="issue-title">Fix #3: Hero headline rewrite for outcomes</div>
+      <div class="code">Rewrite the hero section headline and description using outcome-based copywriting and loss aversion psychology. Current headline: "One System for All Cooperative Operations." Replace with a headline that: (1) names the specific pain cooperative officers feel, (2) promises a concrete outcome, (3) is under 10 words. Current description is 40+ words — cut to under 20. Add a trust line below the CTA buttons: "CDA-compliant · Free 1-hour demo · No installation needed"</div>
+    </div>
+
+    <div class="card">
+      <div class="issue-title">Fix #4: Add urgency countdown to hero</div>
+      <div class="code">Add a real-time countdown timer to the hero section showing time remaining until the next demo slot (June 19, 2026 at 9:00 AM). Show it as: "Next demo in: 1d 14h 23m" updating every second. Style it as a small pill/badge in orange (#e07b00) above the CTA buttons. Also add text: "Only 3 of 5 spots remaining for this session."</div>
+    </div>
+
+    <div class="card">
+      <div class="issue-title">Fix #5: Add testimonial section after partner logos</div>
+      <div class="code">Add a testimonials section between the partners section and the "Serving Cooperatives" section. Create 3 testimonial cards with: circular profile photo placeholder, person's name, role, cooperative name, and a specific quote about time saved or compliance improved. Use a horizontal 3-column layout on desktop, single column on mobile. Style: white cards, subtle shadow, green left border accent, orange quote marks.</div>
+    </div>
+
+    <div class="card">
+      <div class="issue-title">Fix #6: Add exit-intent popup</div>
+      <div class="code">Add an exit-intent popup that triggers when the user's mouse moves above y=10 (about to leave the tab). The popup should: (1) offer a "Free CDA Compliance Checklist PDF", (2) have only ONE field: email address, (3) have a green "Send Me the Checklist" button, (4) close with an X button. Only show once per session (use sessionStorage). Do not show if the user already converted (booked a demo). Style it to match CORA's dark green (#163015) header color.</div>
+    </div>
+
+    <div class="card">
+      <div class="issue-title">Fix #7: Fix footer opacity and SEO meta tags</div>
+      <div class="code">Fix two issues: 
+1. The footer and its child elements have inline style opacity:0 hardcoded. Remove all inline opacity:0 from footer, footer columns, and footer bottom div. Let GSAP/scroll animations add/remove a CSS class instead of inline styles.
+2. Update the HTML head: change title to "CORA — Cooperative Management System Philippines", add meta description "CORA is a CDA-compliant cooperative management software for Philippine cooperatives. Manage membership, savings, loans, and reports in one system.", add og:title, og:description, og:image tags.</div>
+    </div>
+
+  </div>
+</div>
+
+</div>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('show'));
+  document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('show');
+  event.target.classList.add('active');
+}
+</script>

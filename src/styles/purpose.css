@@ -1,0 +1,208 @@
+.purpose {
+  --cora-green: rgb(22, 48, 21);
+  --cora-orange: #e07b00;
+
+  background: rgb(22, 48, 21);
+  padding: 104px 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative floating blob behind content */
+.purpose_bg_blob {
+  position: absolute;
+  top: -120px;
+  right: -180px;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(224,123,0,0.07) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform;
+}
+
+.purpose::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, rgba(224,123,0,0.4), #e07b00, rgba(224,123,0,0.4));
+}
+
+.purpose_container {
+  max-width: 1120px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.purpose_label {
+  display: block;
+  margin: 0 auto 18px;
+  text-align: center;
+  color: var(--cora-orange);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.purpose_title {
+  max-width: 820px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: clamp(26px, 3vw, 38px);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.purpose_text {
+  max-width: 680px;
+  margin: 18px auto 0;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.75;
+}
+
+.purpose_pillars {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 48px;
+  perspective: 1000px;
+}
+
+.purpose_pillar {
+  min-height: 280px;
+  padding: 30px;
+  border-radius: 26px;
+  background: #ffffff;
+  border: 1px solid rgba(22, 48, 21, 0.08);
+  box-shadow: 0 20px 52px rgba(22, 48, 21, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.purpose_pillar_label {
+  width: fit-content;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: rgba(224, 123, 0, 0.12);
+  color: var(--cora-orange);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.purpose_pillar h3 {
+  margin: 28px 0 12px;
+  color: var(--cora-green);
+  font-size: 24px;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+
+.purpose_pillar p {
+  margin: 0;
+  color: #6e6e73;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.purpose_steps {
+  margin-top: 54px;
+  padding: 34px;
+  border-radius: 30px;
+  background: var(--cora-green);
+  color: #ffffff;
+  box-shadow: 0 28px 70px rgba(22, 48, 21, 0.18);
+}
+
+.purpose_steps_header {
+  max-width: 680px;
+  margin: 0 auto 28px;
+  text-align: center;
+}
+
+.purpose_steps_header p {
+  margin: 0 0 10px;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.purpose_steps_header h3 {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(28px, 4vw, 42px);
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+}
+
+.purpose_step {
+  display: grid;
+  grid-template-columns: 86px 1fr;
+  gap: 22px;
+  padding: 24px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.purpose_step:first-of-type {
+  border-top: none;
+}
+
+.purpose_step > span {
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.purpose_step h4 {
+  margin: 0 0 8px;
+  color: #ffffff;
+  font-size: 20px;
+  letter-spacing: -0.02em;
+}
+
+.purpose_step p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+@media (max-width: 900px) {
+  .purpose { padding: 80px 32px; }
+  .purpose_pillars { grid-template-columns: 1fr; }
+  .purpose_pillar { min-height: auto; }
+  .purpose_steps { padding: 28px; }
+}
+
+@media (max-width: 640px) {
+  .purpose { padding: 64px 20px; }
+  .purpose_title { font-size: clamp(38px, 13vw, 54px); }
+  .purpose_text { font-size: 16px; }
+  .purpose_pillar { padding: 24px; border-radius: 22px; }
+  .purpose_pillar h3 { font-size: 21px; }
+  .purpose_steps { padding: 24px; border-radius: 24px; }
+  .purpose_step { grid-template-columns: 1fr; gap: 12px; }
+  .purpose_step > span { width: 48px; height: 48px; }
+}
