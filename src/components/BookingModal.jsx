@@ -104,7 +104,22 @@ function BookingModal({ isOpen, onClose }) {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    const newFormData = { ...formData, [name]: value };
+    setFormData(newFormData);
+
+    // Auto-advance for Step 2 if Role is the last field selected
+    if (step === 2 && name === "role" && value && value !== "Other") {
+      if (newFormData.firstName && newFormData.lastName) {
+        setTimeout(() => setStep(3), 300);
+      }
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleNext();
+    }
   };
 
   const handleNext = () => {
@@ -172,7 +187,9 @@ function BookingModal({ isOpen, onClose }) {
       mode: "no-cors",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: payload.toString(),
-    }).then(() => setStep(6)).catch(() => alert("Unable to submit the form right now."));
+    });
+    // Immediately show the success banner while submitting in background
+    setStep(6);
   };
 
   const handleSubmit = (e) => {
@@ -184,14 +201,15 @@ function BookingModal({ isOpen, onClose }) {
 
   return (
     <div className="booking_modal_overlay" onClick={(e) => e.target === e.currentTarget && onClose()}>
-      <div className="cora_modal booking_modal">
-        <div className="modal_progress">
-          <div className="progress_bar">
-            <div className="progress_fill" style={{ width: `${(step <= 5 ? step : 5) / 5 * 100}%` }} />
+      {step < 6 ? (
+        <div className="cora_modal booking_modal">
+          <div className="modal_progress">
+            <div className="progress_bar">
+              <div className="progress_fill" style={{ width: `${(step <= 5 ? step : 5) / 5 * 100}%` }} />
+            </div>
+            <span className="progress_text">Step {step} of 5</span>
           </div>
-          <span className="progress_text">Step {step} of 5</span>
-        </div>
-        <button className="cora_modal_close" onClick={onClose}>✕</button>
+          <button className="cora_modal_close" onClick={onClose}>✕</button>
 
         {step === 1 && (
           <div className="step_content">
@@ -199,7 +217,16 @@ function BookingModal({ isOpen, onClose }) {
             <p className="step_intro">Choose the type that best describes your cooperative.</p>
             <div className="coop_type_grid">
               {COOP_TYPES.map((type) => (
-                <button key={type} className={`coop_type_tile ${formData.cooperativeType === type ? "selected" : ""}`} onClick={() => setFormData({ ...formData, cooperativeType: type })}>
+                <button
+                  key={type}
+                  className={`coop_type_tile ${formData.cooperativeType === type ? "selected" : ""}`}
+                  onClick={() => {
+                    setFormData({ ...formData, cooperativeType: type });
+                    if (type !== "Other") {
+                      setTimeout(() => setStep(2), 300);
+                    }
+                  }}
+                >
                   {type}
                 </button>
               ))}
@@ -207,7 +234,7 @@ function BookingModal({ isOpen, onClose }) {
             {formData.cooperativeType === "Other" && (
               <div className="form_group" style={{ marginTop: 20 }}>
                 <label>Specify Cooperative Type</label>
-                <input type="text" name="otherCooperativeType" placeholder="Enter cooperative type" value={formData.otherCooperativeType} onChange={handleInputChange} required />
+                <input type="text" name="otherCooperativeType" placeholder="Enter cooperative type" value={formData.otherCooperativeType} onChange={handleInputChange} onKeyDown={handleKeyDown} required />
               </div>
             )}
             <div className="step_buttons">
@@ -223,11 +250,11 @@ function BookingModal({ isOpen, onClose }) {
             <div className="form_row">
               <div className="form_group">
                 <label>First Name</label>
-                <input type="text" name="firstName" placeholder="Juan" value={formData.firstName} onChange={handleInputChange} required />
+                <input type="text" name="firstName" placeholder="Juan" value={formData.firstName} onChange={handleInputChange} onKeyDown={handleKeyDown} required />
               </div>
               <div className="form_group">
                 <label>Last Name</label>
-                <input type="text" name="lastName" placeholder="Dela Cruz" value={formData.lastName} onChange={handleInputChange} required />
+                <input type="text" name="lastName" placeholder="Dela Cruz" value={formData.lastName} onChange={handleInputChange} onKeyDown={handleKeyDown} required />
               </div>
             </div>
             <div className="form_group">
@@ -242,7 +269,7 @@ function BookingModal({ isOpen, onClose }) {
             {formData.role === "Other" && (
               <div className="form_group">
                 <label>Specify Your Role</label>
-                <input type="text" name="otherRole" placeholder="Enter your role" value={formData.otherRole} onChange={handleInputChange} required />
+                <input type="text" name="otherRole" placeholder="Enter your role" value={formData.otherRole} onChange={handleInputChange} onKeyDown={handleKeyDown} required />
               </div>
             )}
             <div className="step_buttons">
@@ -258,7 +285,7 @@ function BookingModal({ isOpen, onClose }) {
             <p className="step_intro">Share details about your cooperative.</p>
             <div className="form_group">
               <label>Cooperative Name</label>
-              <input type="text" name="cooperativeName" placeholder="San Isidro Multi-Purpose Cooperative" value={formData.cooperativeName} onChange={handleInputChange} required />
+              <input type="text" name="cooperativeName" placeholder="San Isidro Multi-Purpose Cooperative" value={formData.cooperativeName} onChange={handleInputChange} onKeyDown={handleKeyDown} required />
             </div>
             <div className="step_buttons">
               <button type="button" className="btn_secondary" onClick={handleBack}>Back</button>
@@ -273,15 +300,15 @@ function BookingModal({ isOpen, onClose }) {
             <p className="step_intro">How can we reach you?</p>
             <div className="form_group">
               <label>Email Address</label>
-              <input type="email" name="email" placeholder="juan@yourcooperative.com" value={formData.email} onChange={handleInputChange} required />
+              <input type="email" name="email" placeholder="juan@yourcooperative.com" value={formData.email} onChange={handleInputChange} onKeyDown={handleKeyDown} required />
             </div>
             <div className="form_group">
               <label>Mobile Number</label>
-              <input type="tel" name="mobile" placeholder="09XX XXX XXXX" value={formData.mobile} onChange={handleInputChange} required />
+              <input type="tel" name="mobile" placeholder="09XX XXX XXXX" value={formData.mobile} onChange={handleInputChange} onKeyDown={handleKeyDown} required />
             </div>
             <div className="form_group">
               <label>Facebook (Optional)</label>
-              <input type="text" name="facebook" placeholder="facebook.com/yourcooperative" value={formData.facebook} onChange={handleInputChange} />
+              <input type="text" name="facebook" placeholder="facebook.com/yourcooperative" value={formData.facebook} onChange={handleInputChange} onKeyDown={handleKeyDown} />
             </div>
             <div className="step_buttons">
               <button type="button" className="btn_secondary" onClick={handleBack}>Back</button>
@@ -311,12 +338,14 @@ function BookingModal({ isOpen, onClose }) {
             </div>
             <div className="step_buttons">
               <button type="button" className="btn_secondary" onClick={handleBack}>Back</button>
-              <button type="submit" className="btn_submit">Finish</button>
+              <button type="submit" className="btn_finish">Finish</button>
             </div>
           </form>
         )}
-
-        {step === 6 && (
+        </div>
+      ) : (
+        <div className="cora_modal banner_modal">
+          <button className="cora_modal_close" onClick={onClose}>✕</button>
           <div className="step_content thank_you_screen">
             <div className="thank_you_icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -328,10 +357,10 @@ function BookingModal({ isOpen, onClose }) {
             <p className="thank_you_text">
               Your booking has been submitted! Check your email for the Google Meet link. We've sent the demo schedule to {formData.email}. See you soon!
             </p>
-            <button className="btn_submit" onClick={onClose}>Close</button>
+            <button className="btn_finish" style={{ marginTop: 0 }} onClick={onClose}>Close</button>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }

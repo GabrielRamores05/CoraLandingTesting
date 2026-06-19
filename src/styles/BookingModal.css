@@ -25,6 +25,18 @@
   position: relative;
 }
 
+.banner_modal {
+  background-color: white;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  animation: modalCardIn 0.28s cubic-bezier(0.2, 0, 0, 1) forwards;
+  position: relative;
+}
+
 .modal_progress {
   padding: 20px 30px 0;
 }
@@ -100,6 +112,7 @@
   width: auto;
   min-height: auto;
   accent-color: #e07b00;
+  margin: 0;
 }
 
 .step_title {
@@ -189,6 +202,23 @@
 
 .btn_submit:hover {
   background-color: #e68a00;
+}
+
+.btn_finish {
+  border: none;
+  background-color: #163015;
+  color: white;
+  padding: 14px 30px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.btn_finish:hover {
+  background-color: #0f2410;
 }
 
 .step_buttons {
