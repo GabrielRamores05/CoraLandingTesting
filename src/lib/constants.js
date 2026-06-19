@@ -1,2 +1,2 @@
 export const GOOGLE_SHEETS_ENDPOINT =
-  "https://script.google.com/macros/s/AKfycbzz1uKDTcty-KLNIw1CvK0Anq6sZ0e5k9t0xyY0ufC4vhKdCtm5pafel7EQ-qOcGxUSxw/exec";
+  "https://script.google.com/macros/s/AKfycbwWYTX9AgiMQeYQ50LFwg22M2DU_sHmSG_GkLfmpSRSIkTkewp1FKQbf1Df_jvTV-3QDQ/exec";
