@@ -36,8 +36,8 @@ function getAvailableDemoSchedules(now) {
   const friday = new Date(scheduleWeekStart);
   friday.setDate(friday.getDate() + 4);
   return [
-    { value: formatBookingDate(wednesday), label: `Wednesday, ${formatBookingDate(wednesday)}` },
-    { value: formatBookingDate(friday), label: `Friday, ${formatBookingDate(friday)}` },
+    { value: `Wednesday, ${formatBookingDate(wednesday)}`, label: `Wednesday, ${formatBookingDate(wednesday)}` },
+    { value: `Friday, ${formatBookingDate(friday)}`, label: `Friday, ${formatBookingDate(friday)}` },
   ];
 }
 
