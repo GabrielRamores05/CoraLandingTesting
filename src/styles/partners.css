@@ -74,22 +74,16 @@
   height: 112px;
   border-radius: 50%;
   overflow: hidden;
-  background-color: #ffffff;
-  box-shadow:
-    0 2px 8px rgba(0, 0, 0, 0.06),
-    0 0 0 1px rgba(22, 48, 21, 0.05);
+  background-color: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  transition: transform 0.28s ease, box-shadow 0.28s ease;
+  transition: transform 0.28s ease;
 }
 
 .partners_card:hover .partners_logo_ring {
   transform: translateY(-5px) scale(1.04);
-  box-shadow:
-    0 12px 32px rgba(22, 48, 21, 0.13),
-    0 0 0 1px rgba(22, 48, 21, 0.08);
 }
 
 .partners_logo {
@@ -98,6 +92,7 @@
   object-fit: cover;
   border-radius: 50%;
   display: block;
+  mix-blend-mode: multiply;
 }
 
 .partners_name {

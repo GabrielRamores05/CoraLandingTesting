@@ -578,6 +578,7 @@
   max-width: 72px;
   object-fit: contain;
   opacity: 1;
+  mix-blend-mode: multiply;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
