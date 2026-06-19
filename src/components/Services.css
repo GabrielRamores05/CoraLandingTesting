@@ -125,7 +125,7 @@
 .cora_panel {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: auto;
   min-height: 560px;
   font-size: 13px;
   color: var(--ui-text);
@@ -146,7 +146,6 @@
 .cora_panel_title { font-size: 18px; font-weight: 700; color: var(--ui-text); margin-bottom: 2px; }
 .cora_panel_sub { font-size: 12px; color: var(--ui-muted); line-height: 1.4; }
 .cora_panel_actions { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; flex-shrink: 0; }
-
 /* Buttons */
 .cora_btn {
   display: inline-flex; align-items: center; gap: 5px;
@@ -248,7 +247,7 @@
 .cora_filter_count { font-size: 11px; font-weight: 700; }
 
 /* Table section */
-.cora_table_section { flex: 1; overflow: hidden; display: flex; flex-direction: column; }
+.cora_table_section { height: auto; display: flex; flex-direction: column; }
 .cora_table_info {
   display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
   padding: 10px 16px 6px; background: #fff; border-bottom: 1px solid var(--ui-border);
@@ -256,7 +255,7 @@
 .cora_table_info strong { font-size: 12px; font-weight: 700; color: var(--ui-text); }
 .cora_table_hint { font-size: 11px; color: var(--ui-muted); }
 
-.cora_table_wrap { overflow-x: auto; flex: 1; background: #fff; }
+.cora_table_wrap { height: auto; background: #fff; }
 .cora_table { width: 100%; border-collapse: collapse; font-size: 12px; }
 .cora_table thead th {
   text-align: left; padding: 9px 12px; font-size: 10px; font-weight: 700;
@@ -496,6 +495,19 @@
   transition: background 0.12s;
 }
 .cora_dropdown_item:hover { background: #f3f4f6; }
+
+.services_tabs,
+.cora_subtabs,
+.cora_table_wrap {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.services_tabs::-webkit-scrollbar,
+.cora_subtabs::-webkit-scrollbar,
+.cora_table_wrap::-webkit-scrollbar {
+  display: none;
+}
 
 /* ── Empty table state ── */
 .cora_empty_table {

@@ -36,10 +36,16 @@
   }
 
   html,
-  body,
+  body {
+    width: 100%;
+    max-width: 100%;
+    font-family: "SF Pro Display", sans-serif;
+  }
+
   #root {
     width: 100%;
-    min-height: 100vh;
+    max-width: 100%;
+    height: auto;
     font-family: "SF Pro Display", sans-serif;
   }
 
@@ -52,7 +58,12 @@
   }
 
   body {
-    overflow-x: hidden;
+    overflow-x: clip;
+  }
+
+  *::-webkit-scrollbar:horizontal {
+    height: 0 !important;
+    display: none;
   }
 
   html.cora_modal_open,

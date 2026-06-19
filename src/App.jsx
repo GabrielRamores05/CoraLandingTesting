@@ -13,6 +13,7 @@ import DataPrivacy from "./components/DataPrivacy";
 import TransparencyVideo from "./components/TransparencyVideo";
 import ComparisonTable from "./components/ComparisonTable";
 import Onboarding from "./components/Onboarding";
+import LiveDemoButton from "./components/LiveDemoButton";
 
 function App() {
   const [page, setPage] = useState("home");
@@ -36,6 +37,7 @@ function App() {
       <CooperativeChoice />
       <FAQ />
       <Footer onPrivacyClick={() => setPage("privacy")} />
+      <LiveDemoButton />
     </>
   );
 }

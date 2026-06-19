@@ -176,7 +176,7 @@ function Hero() {
             </p>
 
             <div className="hero_cta_wrapper">
-              <button className="hero_button" onClick={() => setIsModalOpen(true)}>
+              <button id="hero-book-demo" className="hero_button" onClick={() => setIsModalOpen(true)}>
                 <span>Book My Free 1-Hour Demo</span>
               </button>
               <p className="hero_cta_microcopy">
@@ -228,13 +228,15 @@ function Hero() {
         <div className="hero_carousel">
           <div className="carousel_container">
             <div className="carousel_track">
-              {["BIKOLANAS", "CDO", "FACC", "LACO", "MAHARLIKA", "NBAC", "SEMCO",
-                "BIKOLANAS", "CDO", "FACC", "LACO", "MAHARLIKA", "NBAC", "SEMCO",
-                "BIKOLANAS", "CDO", "FACC", "LACO", "MAHARLIKA", "NBAC", "SEMCO"].map((name, i) => (
-                  <div className="carousel_item" key={i}>
-                    <img src={`/assets/logos/${name}.png`} alt={name} />
-                  </div>
-                ))}
+              {[...Array(4)].map((_, listIndex) => (
+                <div className="carousel_list" key={listIndex} aria-hidden={listIndex > 0 ? "true" : "false"}>
+                  {["BIKOLANAS", "CDO", "FACC", "LACO", "MAHARLIKA", "NBAC", "SEMCO"].map((name, i) => (
+                    <div className="carousel_item" key={i}>
+                      <img src={`/assets/logos/${name}.png`} alt={name} />
+                    </div>
+                  ))}
+                </div>
+              ))}
             </div>
           </div>
         </div>

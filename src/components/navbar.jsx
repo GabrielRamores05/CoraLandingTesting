@@ -293,19 +293,6 @@ function Navbar() {
 
       {contactOpen && <ContactModal onClose={() => setContactOpen(false)} />}
 
-      <a className="demo_float" href="https://cora-ph.com" target="_blank" rel="noopener noreferrer" aria-label="Go to Live Demo">
-        Live Demo
-      </a>
-
-      <div className="mobile_sticky_cta">
-        <button
-          type="button"
-          className="mobile_sticky_cta_button"
-          onClick={() => document.getElementById("hero-book-demo")?.click()}
-        >
-          Book a Free Demo
-        </button>
-      </div>
     </>
   );
 }

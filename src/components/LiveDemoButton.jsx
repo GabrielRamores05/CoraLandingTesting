@@ -32,7 +32,7 @@ function LiveDemoButton() {
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
             <polygon points="5 3 19 12 5 21 5 3" />
           </svg>
-          <span className="live_demo_label magnetic_text">View Live Demo of CORA</span>
+          <span className="live_demo_label magnetic_text">Live Demo</span>
           <button
             className="live_demo_minimize"
             onClick={(e) => { e.stopPropagation(); setMinimized(true); }}

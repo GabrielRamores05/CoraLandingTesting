@@ -3,6 +3,8 @@
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 /* 2-col grid */
@@ -43,6 +45,10 @@
   letter-spacing: 0.22em;
   text-transform: uppercase;
   margin-bottom: 16px;
+  max-width: 100%;
+  width: 100%;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .hero_title {
@@ -52,8 +58,10 @@
   letter-spacing: -0.03em;
   line-height: 1.1;
   margin-bottom: 20px;
+  width: 100%;
+  min-width: 0;
   word-wrap: break-word;
-  overflow-wrap: break-word;
+  overflow-wrap: anywhere;
   max-width: 100%;
 }
 
@@ -62,8 +70,11 @@
   color: #6e6e73;
   line-height: 1.75;
   max-width: 480px;
+  width: 100%;
+  min-width: 0;
   margin-bottom: 36px;
   font-weight: 400;
+  overflow-wrap: anywhere;
 }
 
 /* CTA */
@@ -101,6 +112,8 @@
   color: #9ca3af;
   font-weight: 500;
   letter-spacing: 0.01em;
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 
 /* Trust badges */
@@ -134,6 +147,8 @@
 .hero_visual {
   position: relative;
   will-change: transform, opacity;
+  min-width: 0;
+  max-width: 100%;
 }
 
 /* Perspective wrapper so 3D tilt renders correctly */
@@ -537,14 +552,17 @@
 
 .carousel_track {
   display: flex;
-  gap: 64px;
   width: max-content;
   align-items: center;
-  animation: slide 26s linear infinite;
 }
 
-.carousel_track:hover {
-  animation-play-state: paused;
+.carousel_list {
+  display: flex;
+  gap: 64px;
+  padding-right: 64px;
+  align-items: center;
+  width: max-content;
+  animation: slide 13s linear infinite;
 }
 
 .carousel_item {
@@ -559,19 +577,17 @@
   width: auto;
   max-width: 72px;
   object-fit: contain;
-  filter: grayscale(100%);
-  opacity: 0.25;
-  transition: opacity 0.3s ease, filter 0.3s ease;
+  opacity: 1;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .carousel_item:hover img {
-  opacity: 0.6;
-  filter: grayscale(0%);
+  transform: scale(1.05);
 }
 
 @keyframes slide {
   0%   { transform: translateX(0); }
-  100% { transform: translateX(calc(-100% / 3)); }
+  100% { transform: translateX(-100%); }
 }
 
 /* ══ Responsive ══ */
@@ -611,7 +627,8 @@
   .hero_content { width: 100%; max-width: 100%; }
   .hero_content { padding-right: 0; }
   .hero_logo { height: 80px; margin-bottom: 16px; }
-  .hero_title { font-size: clamp(22px, 6.5vw, 32px); }
+  .hero_eyebrow { letter-spacing: 0.14em; line-height: 1.4; }
+  .hero_title { font-size: clamp(22px, 6vw, 30px); width: 100%; overflow-wrap: anywhere; }
   .hero_description { font-size: 14px; line-height: 1.6; max-width: 100%; }
   .hero_button { padding: 12px 28px; font-size: 13px; min-height: 44px; width: 100%; }
   .hero_cta_wrapper { width: 100%; }
@@ -625,29 +642,30 @@
   .hero_stat_strip_inner { padding: 16px 16px; gap: 12px; }
   .hero_stat_item { padding: 0 12px; }
   .hero_stat_num { font-size: 22px; }
-  .carousel_track { gap: 36px; }
+  .carousel_list { gap: 36px; padding-right: 36px; }
   .hero_carousel::before,
   .hero_carousel::after { width: 60px; }
 }
 
 @media (max-width: 480px) {
-  .hero_body { padding: 44px 16px 32px; gap: 28px; }
+  .hero_body { padding: 44px 20px 32px; gap: 28px; }
   .hero_content { padding-right: 0; width: 100%; max-width: 100%; }
   .hero_logo { height: 76px; margin-bottom: 15px; }
-  .hero_title { font-size: clamp(20px, 6vw, 28px); }
+  .hero_eyebrow { font-size: 10px; letter-spacing: 0.1em; }
+  .hero_title { font-size: clamp(20px, 5.6vw, 25px); }
   .hero_mini_app { height: 260px; }
 }
 
 @media (max-width: 400px) {
-  .hero_body { display: flex; flex-direction: column; padding: 44px 14px 32px; gap: 28px; }
+  .hero_body { display: flex; flex-direction: column; padding: 44px 20px 32px; gap: 28px; }
   .hero_content { padding-right: 0; width: 100%; max-width: 100%; overflow-x: hidden; flex: 0 1 auto; }
   .hero_logo { height: 72px; margin-bottom: 14px; }
-  .hero_title { font-size: clamp(18px, 5.5vw, 26px); }
+  .hero_title { font-size: clamp(18px, 5.3vw, 23px); }
   .hero_description { font-size: 13px; margin-bottom: 24px; }
   .hero_button { padding: 11px 24px; font-size: 12px; width: 100%; min-height: 44px; }
   .hero_cta_microcopy { font-size: 10px; }
   .hero_stat_divider { display: none; }
-  .hero_stat_strip_inner { gap: 8px; flex-wrap: wrap; justify-content: space-between; padding: 12px 8px; }
+  .hero_stat_strip_inner { gap: 8px; flex-wrap: wrap; justify-content: space-between; padding: 12px 20px; }
   .hero_stat_item { padding: 0 4px; }
   .hero_stat_num { font-size: 18px; }
   .hero_stat_label { font-size: 10px; }
