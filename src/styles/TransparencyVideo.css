@@ -214,17 +214,25 @@
 @media (max-width: 900px) {
   .tv_section { padding: 72px 32px; }
   .tv_container { grid-template-columns: 1fr; gap: 48px; }
-  .tv_title { font-size: clamp(30px, 8vw, 44px); }
+  .tv_title { font-size: clamp(28px, 6vw, 40px); }
+  .tv_sub { font-size: 15px; }
 }
 
 @media (max-width: 640px) {
   .tv_section { padding: 60px 20px; }
-  .tv_unmute_banner span { font-size: 13px; }
-  .tv_unmute_banner { padding: 10px 16px; bottom: 16px; }
+  .tv_title { font-size: clamp(22px, 5.5vw, 32px); }
+  .tv_sub { font-size: 14px; line-height: 1.6; }
+  .tv_frame { border-radius: 12px; }
+  .tv_play_btn { width: 60px; height: 60px; }
+  .tv_unmute_banner { padding: 12px 14px; bottom: 12px; border-radius: 10px; }
+  .tv_unmute_banner span { font-size: 12px; }
 }
 
 @media (max-width: 480px) {
-  .tv_section { padding: 48px 16px; }
-  .tv_play_btn { width: 56px; height: 56px; }
-  .tv_unmute_banner { display: none; } /* Hide if too squished, they can still tap anywhere */
+  .tv_section { padding: 48px 12px; }
+  .tv_title { font-size: clamp(18px, 5vw, 26px); }
+  .tv_sub { font-size: 13px; }
+  .tv_frame { border-radius: 10px; }
+  .tv_play_btn { width: 48px; height: 48px; }
+  .tv_unmute_banner { display: none; }
 }

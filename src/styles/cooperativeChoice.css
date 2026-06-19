@@ -282,16 +282,39 @@
 }
 
 @media (max-width: 768px) {
-  .choice { padding: 72px 20px; }
-  .choice_options { grid-template-columns: 1fr; max-width: 460px; margin-left: auto; margin-right: auto; }
-  .choice_description { text-align: left; }
-  .choice_laptop_wrap { max-width: 100%; }
+  .choice { padding: 64px 20px; }
+  .choice_eyebrow { font-size: 11px; }
+  .choice_title { font-size: clamp(22px, 6vw, 32px); }
+  .choice_intro { font-size: 14px; max-width: 100%; line-height: 1.6; margin-top: 12px; }
+  .choice_options { grid-template-columns: 1fr; max-width: 100%; margin-left: auto; margin-right: auto; gap: 20px; }
+  .choice_option { padding: 20px; border-radius: 20px; gap: 16px; }
+  .choice_description { text-align: left; margin-top: 40px; padding-top: 24px; font-size: 14px; }
+  .choice_laptop_wrap { max-width: 100%; margin-bottom: 16px; }
+  .choice_copy h3 { font-size: 20px; margin-bottom: 8px; }
+  .choice_copy p { font-size: 14px; line-height: 1.6; margin-bottom: 12px; }
+  .choice_copy ul { gap: 8px; }
+  .choice_copy li { font-size: 13px; padding-left: 20px; }
+  .choice_tab { padding: 10px 24px; font-size: 12px; }
+  .choice_cta { min-height: 44px; padding: 12px 20px; font-size: 12px; }
 }
 
 @media (max-width: 480px) {
-  .choice { padding: 60px 16px; }
-  .choice_title { font-size: clamp(22px, 8vw, 32px); }
-  .choice_option { padding: 20px; border-radius: 24px; }
-  .choice_copy h3 { font-size: 22px; }
-  .choice_tab { padding: 11px 28px; }
+  .choice { padding: 48px 12px; }
+  .choice_eyebrow { font-size: 10px; }
+  .choice_title { font-size: clamp(18px, 5.5vw, 26px); }
+  .choice_intro { font-size: 13px; margin-top: 10px; }
+  .choice_options { gap: 16px; }
+  .choice_option { padding: 16px; border-radius: 16px; gap: 12px; }
+  .choice_laptop_wrap { margin-bottom: 12px; }
+  .choice_laptop_hint { padding: 24px 0 12px; font-size: 12px; bottom: 0; }
+  .choice_laptop_hint svg { width: 12px; height: 12px; }
+  .choice_copy h3 { font-size: 18px; margin-bottom: 6px; }
+  .choice_copy p { font-size: 13px; margin-bottom: 10px; }
+  .choice_copy ul { gap: 6px; }
+  .choice_copy li { font-size: 12px; padding-left: 18px; }
+  .choice_copy li::before { width: 7px; height: 7px; }
+  .choice_tab { padding: 9px 20px; font-size: 11px; border-radius: 20px; }
+  .choice_tab--outline { padding: 9px 18px; }
+  .choice_cta { min-height: 40px; padding: 10px 16px; font-size: 11px; }
+  .choice_description { margin-top: 32px; padding-top: 20px; font-size: 13px; }
 }

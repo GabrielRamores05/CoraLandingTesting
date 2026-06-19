@@ -170,6 +170,7 @@
 
 @media (max-width: 900px) {
   .ct_section { padding: 80px 32px; }
+  .ct_header { margin-bottom: 40px; }
   .ct_cards {
     grid-template-columns: 1fr;
     max-width: 440px;
@@ -180,8 +181,33 @@
   .ct_card--cora:hover { transform: translateY(-4px); }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 640px) {
   .ct_section { padding: 60px 20px; }
-  .ct_card { padding: 32px 24px; }
-  .ct_title { font-size: 32px; }
+  .ct_eyebrow { font-size: 11px; margin-bottom: 10px; }
+  .ct_title { font-size: clamp(26px, 6vw, 40px); margin-bottom: 12px; }
+  .ct_sub { font-size: 15px; max-width: 100%; line-height: 1.6; }
+  .ct_cards { gap: 24px; }
+  .ct_card { padding: 28px 20px; border-radius: 16px; }
+  .ct_card_header { margin-bottom: 24px; padding-bottom: 16px; }
+  .ct_card_subtitle { font-size: 11px; margin-bottom: 6px; }
+  .ct_card_title { font-size: 18px; }
+  .ct_card_list { gap: 16px; }
+  .ct_card_item { font-size: 14px; gap: 10px; }
+  .ct_icon { width: 20px; height: 20px; margin-top: 0; }
+  .ct_icon svg { width: 10px; height: 10px; }
+}
+
+@media (max-width: 480px) {
+  .ct_section { padding: 50px 14px; }
+  .ct_title { font-size: clamp(20px, 5.5vw, 30px); }
+  .ct_eyebrow { font-size: 10px; }
+  .ct_sub { font-size: 13px; margin-bottom: 24px; }
+  .ct_card { padding: 20px 16px; border-radius: 14px; }
+  .ct_card_header { margin-bottom: 20px; padding-bottom: 14px; }
+  .ct_card_subtitle { font-size: 10px; }
+  .ct_card_title { font-size: 16px; }
+  .ct_card_list { gap: 12px; }
+  .ct_card_item { font-size: 13px; gap: 8px; line-height: 1.5; }
+  .ct_icon { width: 18px; height: 18px; }
+  .ct_icon svg { width: 9px; height: 9px; }
 }

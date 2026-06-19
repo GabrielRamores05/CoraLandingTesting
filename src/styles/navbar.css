@@ -175,17 +175,19 @@
   .topbar_contact { display: none; }
   .topbar_socials { gap: 10px; }
   .topbar_social_link img { width: 15px; height: 15px; }
-  .navbar { padding: 0 20px; }
+  .navbar { padding: 0 20px; height: 56px; }
+  .navbar_logo img { height: 32px; }
   .navbar_links { display: none; }
-  .hamburger { display: flex; }
+  .hamburger { display: flex; padding: 8px; }
 
   .mobile_menu {
     position: fixed;
-    top: 94px;
-    right: -280px;
-    width: 280px;
-    height: calc(100vh - 94px);
-    background-color: rgba(255, 255, 255, 0.97);
+    top: 56px;
+    right: -85vw;
+    width: 85vw;
+    max-width: 320px;
+    height: calc(100vh - 56px);
+    background-color: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
     display: flex;
@@ -193,29 +195,38 @@
     transition: right 0.3s ease;
     z-index: 998;
     border-left: 1px solid rgba(22, 48, 21, 0.07);
-    padding: 16px 0;
+    padding: 12px 0;
+    overflow-y: auto;
   }
 
   .mobile_menu.active { right: 0; }
 
   .mobile_menu a {
-    display: block;
-    padding: 16px 28px;
+    display: flex;
+    align-items: center;
+    padding: 16px 20px;
+    min-height: 48px;
     color: rgba(22, 48, 21, 0.7);
     font-size: 15px;
     font-weight: 500;
     text-decoration: none;
     border-bottom: 1px solid rgba(22, 48, 21, 0.06);
-    transition: color 0.2s;
+    transition: color 0.2s, background 0.2s;
   }
 
-  .mobile_menu a:hover { color: rgb(22, 48, 21); }
+  .mobile_menu a:active { background: rgba(22, 48, 21, 0.05); }
+  .mobile_menu a:hover { color: rgb(22, 48, 21); background: rgba(22, 48, 21, 0.02); }
 }
 
 @media (max-width: 480px) {
-  .topbar { height: 36px; padding: 0 16px; }
+  .topbar { height: 36px; padding: 0 16px; display: none; }
   .topbar_logo { height: 22px; }
-  .navbar { padding: 0 16px; }
+  .navbar { padding: 0 12px; height: 52px; }
+  .navbar_logo img { height: 28px; }
+  .hamburger { padding: 6px; }
+  .hamburger span { width: 20px; height: 1.5px; }
+  .mobile_menu { width: 90vw; max-width: 100%; }
+  .mobile_menu a { padding: 14px 16px; font-size: 14px; }
 }
 
 /* Mobile sticky demo CTA */
@@ -235,6 +246,7 @@
 
 .mobile_sticky_cta_button {
   width: 100%;
+  min-height: 48px;
   padding: 14px;
   background: rgb(22, 48, 21);
   color: #ffffff;
@@ -246,11 +258,16 @@
   letter-spacing: 0.01em;
   cursor: pointer;
   transition: background 0.18s, transform 0.15s;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .mobile_sticky_cta_button:hover {
   background: #0f2810;
   transform: translateY(-1px);
+}
+
+.mobile_sticky_cta_button:active {
+  transform: translateY(0);
 }
 
 @media (max-width: 768px) {
@@ -270,8 +287,9 @@
     padding: 10px 12px;
   }
   .mobile_sticky_cta_button {
-    padding: 13px;
-    font-size: 13.5px;
+    padding: 12px;
+    font-size: 13px;
+    min-height: 44px;
   }
 }
 

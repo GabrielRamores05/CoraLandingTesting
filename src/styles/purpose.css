@@ -197,12 +197,28 @@
 }
 
 @media (max-width: 640px) {
-  .purpose { padding: 64px 20px; }
-  .purpose_title { font-size: clamp(38px, 13vw, 54px); }
-  .purpose_text { font-size: 16px; }
-  .purpose_pillar { padding: 24px; border-radius: 22px; }
-  .purpose_pillar h3 { font-size: 21px; }
-  .purpose_steps { padding: 24px; border-radius: 24px; }
-  .purpose_step { grid-template-columns: 1fr; gap: 12px; }
-  .purpose_step > span { width: 48px; height: 48px; }
+  .purpose { padding: 60px 20px; }
+  .purpose_title { font-size: clamp(24px, 6vw, 40px); }
+  .purpose_text { font-size: 14px; line-height: 1.6; }
+  .purpose_pillar { padding: 20px; border-radius: 16px; }
+  .purpose_pillar h3 { font-size: 16px; }
+  .purpose_steps { padding: 20px; border-radius: 16px; }
+  .purpose_step { grid-template-columns: 50px 1fr; gap: 12px; padding: 16px 0; }
+  .purpose_step > span { width: 44px; height: 44px; border-radius: 10px; font-size: 10px; }
+  .purpose_step h4 { font-size: 14px; }
+  .purpose_step p { font-size: 12px; }
 }
+
+@media (max-width: 480px) {
+  .purpose { padding: 48px 12px; }
+  .purpose_title { font-size: clamp(20px, 5.5vw, 28px); }
+  .purpose_text { font-size: 13px; }
+  .purpose_pillar { padding: 16px; }
+  .purpose_pillar h3 { font-size: 14px; }
+  .purpose_steps { padding: 16px; }
+  .purpose_step { gap: 10px; padding: 12px 0; }
+  .purpose_step > span { width: 40px; height: 40px; font-size: 9px; }
+  .purpose_step h4 { font-size: 13px; margin-bottom: 4px; }
+  .purpose_step p { font-size: 11px; }
+}
+

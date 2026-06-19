@@ -358,26 +358,74 @@
 @media (max-width: 860px) {
   .services_layout { grid-template-columns: 1fr; }
   .services_tabs {
-    flex-direction: row; overflow-x: auto;
+    flex-direction: row; overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch;
     border-right: none; border-bottom: 1px solid rgba(22, 48, 21, 0.08);
+    padding: 0 4px;
   }
   .services_tab {
-    flex-direction: column; align-items: center; gap: 4px; padding: 12px 14px;
+    flex-direction: column; align-items: center; gap: 4px; padding: 14px 12px;
     border-left: none; border-bottom: 3px solid transparent;
-    border-right: 1px solid rgba(22, 48, 21, 0.06); min-width: 72px; text-align: center;
+    border-right: 1px solid rgba(22, 48, 21, 0.06); min-width: 80px; text-align: center;
+    white-space: nowrap; flex-shrink: 0;
   }
   .services_tab--active { border-left-color: transparent; border-bottom-color: var(--cora-orange); }
   .services_tab_arrow { display: none; }
   .services_tab_label { font-size: 11px; }
+  .cora_panel { min-height: 480px; }
+  .cora_stat_row { grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 10px; }
 }
 
 @media (max-width: 640px) {
-  .services { padding: 60px 16px; }
-  .cora_panel_topbar { padding: 14px; }
-  .cora_panel_title { font-size: 15px; }
-  .cora_stat_row { grid-template-columns: 1fr 1fr; padding: 10px; }
-  .cora_stat_card_value { font-size: 18px; }
+  .services { padding: 50px 12px; }
+  .services_heading { font-size: clamp(22px, 5vw, 32px); }
+  .services_sub { font-size: 14px; max-width: 100%; margin: 0 auto 32px; }
+  .services_tabs { padding: 0; overflow-x: auto; }
+  .services_tab { padding: 12px 10px; min-width: 72px; gap: 3px; }
+  .services_tab_icon { width: 24px; height: 24px; }
+  .services_tab_icon svg { width: 14px; height: 14px; }
+  .services_tab_label { font-size: 10px; }
+  .cora_panel { min-height: 400px; }
+  .cora_panel_topbar { padding: 12px 14px; gap: 12px; }
+  .cora_panel_title { font-size: 14px; }
+  .cora_panel_sub { font-size: 11px; }
+  .cora_panel_actions { gap: 4px; flex-wrap: wrap; }
+  .cora_btn { padding: 5px 10px; font-size: 11px; }
+  .cora_btn--sm { padding: 4px 8px; font-size: 10px; }
+  .cora_stat_row { grid-template-columns: repeat(2, 1fr); gap: 8px; padding: 10px; }
+  .cora_stat_card { padding: 10px 12px; }
+  .cora_stat_card_value { font-size: 16px; }
+  .cora_subtabs { gap: 0; padding: 0; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .cora_subtab { padding: 10px 12px; font-size: 11px; }
+  .cora_search_row { padding: 10px; gap: 6px; }
+  .cora_search_wrap { flex: 1; min-width: 140px; padding: 5px 8px; }
+  .cora_select { padding: 4px 6px; font-size: 11px; }
+  .cora_table { font-size: 11px; }
+  .cora_table th, .cora_table td { padding: 8px 6px; }
   .cora_inner_section { padding: 10px; }
+}
+
+@media (max-width: 480px) {
+  .services { padding: 40px 10px; }
+  .services_heading { font-size: clamp(18px, 5vw, 26px); }
+  .services_sub { font-size: 13px; margin: 0 auto 24px; }
+  .services_tab { padding: 10px 8px; min-width: 64px; }
+  .services_tab_label { font-size: 9px; }
+  .cora_panel { min-height: 360px; }
+  .cora_panel_topbar { padding: 10px 12px; }
+  .cora_panel_title { font-size: 13px; margin-bottom: 0; }
+  .cora_panel_sub { display: none; }
+  .cora_btn { padding: 4px 8px; font-size: 10px; min-height: 36px; }
+  .cora_stat_row { gap: 6px; padding: 8px; }
+  .cora_stat_card { padding: 8px 10px; border-radius: 6px; }
+  .cora_stat_card_label { font-size: 9px; }
+  .cora_stat_card_value { font-size: 14px; }
+  .cora_subtabs { padding: 0 8px; }
+  .cora_subtab { padding: 8px 10px; font-size: 10px; }
+  .cora_search_row { padding: 8px; }
+  .cora_search_wrap { min-width: 120px; padding: 4px 6px; }
+  .cora_select { padding: 3px 4px; font-size: 10px; }
+  .cora_table { font-size: 10px; }
+  .cora_table th, .cora_table td { padding: 6px 4px; }
 }
 
 /* ── Toast ── */

@@ -158,18 +158,25 @@
 }
 
 @media (max-width: 640px) {
-  .serving { padding: 36px 20px 64px; }
-  .serving_intro { font-size: 15px; }
+  .serving { padding: 36px 20px 60px; }
+  .serving_title { font-size: clamp(26px, 6vw, 38px); }
+  .serving_intro { font-size: 14px; line-height: 1.6; max-width: 100%; }
+  .serving_image_wrap { max-width: 100%; margin: 0; }
+  .serving_name_card { top: 14px; left: 8px; padding: 8px 12px; font-size: 11px; }
+  .serving_callout { padding: 16px 18px; border-radius: 12px; font-size: 13px; }
+  .serving_list_grid { grid-template-columns: 1fr 1fr; gap: 10px 20px; }
+  .serving_list_item { font-size: 12px; padding-left: 16px; line-height: 1.5; }
+  .serving_list_item::before { width: 8px; height: 8px; }
 }
 
 @media (max-width: 480px) {
-  .serving { padding: 32px 16px 56px; }
+  .serving { padding: 32px 12px 48px; }
+  .serving_title { font-size: clamp(20px, 5.5vw, 30px); }
+  .serving_intro { font-size: 13px; }
   .serving_image_wrap { max-width: 100%; }
-  .serving_name_card { top: 12px; left: 6px; padding: 6px 10px; }
-  .serving_callout { padding: 14px 16px; }
-  .serving_title { font-size: 28px; }
-  .serving_intro { font-size: 14px; }
-  .serving_list_grid { grid-template-columns: 1fr 1fr; gap: 8px 16px; }
-  .serving_list_item { font-size: 12px; padding-left: 14px; }
-  .serving_list_item::before { width: 7px; height: 7px; top: 4px; }
+  .serving_name_card { top: 10px; left: 6px; padding: 6px 10px; font-size: 10px; }
+  .serving_callout { padding: 12px 14px; border-radius: 10px; font-size: 12px; }
+  .serving_list_grid { grid-template-columns: 1fr 1fr; gap: 8px 14px; }
+  .serving_list_item { font-size: 11px; padding-left: 14px; }
+  .serving_list_item::before { width: 6px; height: 6px; top: 5px; }
 }
