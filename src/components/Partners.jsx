@@ -109,25 +109,19 @@ function Partners() {
       <div className="partners_header">
         <p className="partners_eyebrow">Trusted By</p>
         <h2 className="partners_headline" ref={headlineRef}>
-          Cooperatives across Bicol<br />already choose CORA.
+          Cooperatives across Bicol already choose CORA.
         </h2>
         <p className="partners_subtext">
-          From agricultural federations to multi-purpose cooperatives — CORA powers the financial backbone of organizations that need accurate records, faster reporting, and calmer compliance.
+          Trusted by agricultural federations and multi-purpose cooperatives that need accurate records, faster reporting, and calmer compliance.
         </p>
       </div>
 
       <div className="partners_grid_wrap">
-        <p className="partners_trust_message" style={{ textAlign: "center", color: "#6e6e73", marginBottom: "32px", fontSize: "16px", fontWeight: "500" }}>
-          These cooperatives passed their CDA audits and cut reporting times using CORA.
-        </p>
-        <div className="partners_grid">
+        <div className="partners_row">
           {COOPERATIVES.map((c) => (
-            <div key={c.abbr} className="partners_card">
-              <div className="partners_logo_ring">
-                <img src={c.logo} alt={c.name} className="partners_logo" />
-              </div>
-              <p className="partners_name">{c.name}</p>
-              <p className="partners_abbr">({c.abbr})</p>
+            <div key={c.abbr} className="partners_chip" title={c.name}>
+              <img src={c.logo} alt={c.name} className="partners_chip_logo" />
+              <span className="partners_chip_name">{c.name}</span>
             </div>
           ))}
         </div>

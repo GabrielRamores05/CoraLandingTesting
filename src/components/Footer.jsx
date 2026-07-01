@@ -38,7 +38,7 @@ function Footer({ onPrivacyClick }) {
               <img src="/assets/logos/cora.png" alt="CORA Logo" className="footer_logo" />
               <p className="footer_tagline">All-in-one cooperative management system built for the Philippines.</p>
               <button type="button" className="footer_cta" onClick={() => document.getElementById("hero-book-demo")?.click()}>
-                Book a Free Demo
+                Register for next DEMO
               </button>
               <div className="footer_socials">
                 <a href="https://www.facebook.com/Cora.ph.2026" className="footer_social" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
@@ -53,7 +53,7 @@ function Footer({ onPrivacyClick }) {
                 <li><a href="#services" onClick={(e) => { e.preventDefault(); document.getElementById("services")?.scrollIntoView({ behavior: "smooth" }); }}>Features</a></li>
                 <li><a href="#" onClick={(e) => { e.preventDefault(); document.getElementById("booking-trigger")?.click(); }}>Online Edition</a></li>
                 <li><a href="#" onClick={(e) => { e.preventDefault(); document.getElementById("booking-trigger")?.click(); }}>Offline Edition</a></li>
-                <li><a href="#" onClick={(e) => { e.preventDefault(); document.getElementById("booking-trigger")?.click(); }}>Book a Demo</a></li>
+                <li><a href="#" onClick={(e) => { e.preventDefault(); document.getElementById("booking-trigger")?.click(); }}>Register for next DEMO</a></li>
               </ul>
             </div>
 

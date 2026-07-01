@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import "../styles/hero.css";
 import BookingModal from "./BookingModal";
+import Navbar from "./navbar";
 import { useTextReveal } from "../hooks/useTextReveal";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -163,21 +164,23 @@ function Hero() {
   return (
     <>
       <div className="hero" ref={heroRef}>
+
+        <Navbar />
+
         <div className="hero_body">
           {/* LEFT: Copy */}
           <div className="hero_content" ref={leftColRef}>
-            <img src="/assets/logos/cora.png" alt="CORA Logo" className="hero_logo" />
             <p className="hero_eyebrow">BUILT FOR PHILIPPINE COOPERATIVES</p>
             <h1 className="hero_title" ref={titleRef}>
-              Save 40+ hours a month — automate your cooperative's records, loans, and CDA reports.
+              Save 40+ hours a month with smarter cooperative operations.
             </h1>
             <p className="hero_description">
-              Built for treasurers, bookkeepers, and board chairs who need to manage operations, compute dividends, and stay CDA-compliant — without the manual hassle.
+              Built for treasurers and boards to manage records, loans, dividends, and CDA compliance with less manual work.
             </p>
 
             <div className="hero_cta_wrapper">
               <button id="hero-book-demo" className="hero_button" onClick={() => setIsModalOpen(true)}>
-                <span>Book My Free 1-Hour Demo</span>
+                <span>Register for next DEMO</span>
               </button>
               <p className="hero_cta_microcopy">
                 Limited slots per week • No commitment • No card required.
@@ -196,48 +199,45 @@ function Hero() {
             </div>
           </div>
 
-          {/* RIGHT: Mini Dashboard — Apple-style scroll product reveal */}
-          <div className="hero_visual hero_visual--perspective" ref={visualRef}>
-            <MiniDashboard />
-          </div>
+          {/* RIGHT: Visual removed */}
+          <div className="hero_visual hero_visual--perspective" ref={visualRef}></div>
         </div>
 
-        {/* Stat strip — immediately below the 2-col grid */}
-        <div className="hero_stat_strip">
-          <div className="hero_stat_strip_inner">
-            <div className="hero_stat_item">
-              <span className="hero_stat_num">10+</span>
-              <span className="hero_stat_label">Cooperatives</span>
-            </div>
-            <div className="hero_stat_divider" />
-            <div className="hero_stat_item">
-              <span className="hero_stat_num">1,000+</span>
-              <span className="hero_stat_label">Members Managed</span>
-            </div>
-            <div className="hero_stat_divider" />
-            <div className="hero_stat_item">
-              <span className="hero_stat_num">5,000+</span>
-              <span className="hero_stat_label">Hours Saved</span>
-            </div>
-            <div className="hero_stat_divider hero_stat_divider--hide-mobile" />
-            <p className="hero_stat_tagline">Cooperatives across Bicol already choose CORA.</p>
-          </div>
-        </div>
+      </div>
 
-        {/* Logo carousel */}
-        <div className="hero_carousel">
-          <div className="carousel_container">
-            <div className="carousel_track">
-              {[...Array(4)].map((_, listIndex) => (
-                <div className="carousel_list" key={listIndex} aria-hidden={listIndex > 0 ? "true" : "false"}>
-                  {["BIKOLANAS", "CDO", "FACC", "LACO", "MAHARLIKA", "NBAC", "SEMCO"].map((name, i) => (
-                    <div className="carousel_item" key={i}>
-                      <img src={`/assets/logos/${name}.png`} alt={name} />
-                    </div>
-                  ))}
-                </div>
-              ))}
-            </div>
+      <div className="hero_stat_strip">
+        <div className="hero_stat_strip_inner">
+          <div className="hero_stat_item">
+            <span className="hero_stat_num">10+</span>
+            <span className="hero_stat_label">Cooperatives</span>
+          </div>
+          <div className="hero_stat_divider" />
+          <div className="hero_stat_item">
+            <span className="hero_stat_num">1,000+</span>
+            <span className="hero_stat_label">Members Managed</span>
+          </div>
+          <div className="hero_stat_divider" />
+          <div className="hero_stat_item">
+            <span className="hero_stat_num">5,000+</span>
+            <span className="hero_stat_label">Hours Saved</span>
+          </div>
+          <div className="hero_stat_divider hero_stat_divider--hide-mobile" />
+          <p className="hero_stat_tagline">Cooperatives across Bicol already choose CORA.</p>
+        </div>
+      </div>
+
+      <div className="hero_carousel">
+        <div className="carousel_container">
+          <div className="carousel_track">
+            {[...Array(4)].map((_, listIndex) => (
+              <div className="carousel_list" key={listIndex} aria-hidden={listIndex > 0 ? "true" : "false"}>
+                {['BIKOLANAS', 'CDO', 'FACC', 'LACO', 'MAHARLIKA', 'NBAC', 'SEMCO'].map((name, i) => (
+                  <div className="carousel_item" key={i}>
+                    <img src={`/assets/logos/${name}.png`} alt={name} />
+                  </div>
+                ))}
+              </div>
+            ))}
           </div>
         </div>
       </div>

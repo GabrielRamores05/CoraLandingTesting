@@ -34,7 +34,7 @@ const CONTENT = {
         desc: "Complete accounting tools built for cooperative finance.",
       },
     ],
-    cta: "Book a Demo — Offline",
+    cta: "Register for next DEMO — Offline",
   },
   online: {
     variant: "online",
@@ -68,7 +68,7 @@ const CONTENT = {
         desc: "Bank-grade encryption protects every record in the cloud.",
       },
     ],
-    cta: "Book a Demo — Online",
+    cta: "Register for next DEMO — Online",
   },
 };
 

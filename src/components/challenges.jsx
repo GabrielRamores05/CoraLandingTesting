@@ -217,7 +217,7 @@ function Challenges() {
                           className="challenges_button_mobile"
                           onClick={() => setIsModalOpen(true)}
                         >
-                          Book a Demo →
+                          Register for next DEMO →
                         </button>
                       </div>
                     )}
@@ -245,7 +245,7 @@ function Challenges() {
                 className="challenges_button"
                 onClick={() => setIsModalOpen(true)}
               >
-                Book a Demo →
+                Register for next DEMO →
               </button>
             </div>
           </div>

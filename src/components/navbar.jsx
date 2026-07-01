@@ -248,36 +248,32 @@ function Navbar() {
     setContactOpen(true);
   };
 
+  const scrollToSection = (id) => (e) => {
+    e.preventDefault();
+    setMenuOpen(false);
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const navLinks = [
+    { id: "services", label: "Services" },
+    { id: "purpose", label: "About" },
+    { id: "roi-calculator", label: "ROI Calculator" },
+    { id: "onboarding", label: "Onboarding" },
+    { id: "partners", label: "Partners" },
+    { id: "faq", label: "FAQ" },
+  ];
+
   return (
     <>
-      <div className="topbar">
-        <img className="topbar_logo" src="/assets/logos/edgepoint.png" alt="Edgepoint Logo" />
-        <div className="topbar_contact">
-            <div className="topbar_contact_item">
-              <img src="/assets/icons/mobile.png" alt="" />
-              <p>0962 807 3120</p>
-            </div>
-            <div className="topbar_contact_item">
-              <img src="/assets/icons/email.png" alt="" />
-              <p>edgepoint.solutions.inc@gmail.com</p>
-            </div>
-          <div className="topbar_contact_item">
-            <img src="/assets/icons/location.png" alt="" />
-            <p>Nagaland 4th level Emall, Naga City, Region V.</p>
-          </div>
-        </div>
-        <div className="topbar_socials">
-          <a href="https://www.facebook.com/Cora.ph.2026" className="topbar_social_link" target="_blank" rel="noopener noreferrer"><img src="/assets/icons/facebook.png" alt="Facebook" /></a>
-        </div>
-      </div>
-
       <nav className="navbar" ref={navRef}>
         <div className="navbar_inner">
-          <div className="navbar_logo">
+          <a className="navbar_logo" href="#hero" onClick={(e) => { e.preventDefault(); document.getElementById("hero")?.scrollIntoView({ behavior: "smooth", block: "start" }); }}>
             <img src="/assets/logos/cora.png" alt="CORA Logo" />
-          </div>
+          </a>
           <div className="navbar_links">
-            <a href="#services" onClick={(e) => { e.preventDefault(); document.getElementById("services")?.scrollIntoView({ behavior: "smooth" }); }}>Services</a>
+            {navLinks.map((link) => (
+              <a key={link.id} href={`#${link.id}`} onClick={scrollToSection(link.id)}>{link.label}</a>
+            ))}
             <a href="#" onClick={openContact} className="navbar_cta">Contact Us</a>
           </div>
           <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
@@ -287,7 +283,9 @@ function Navbar() {
       </nav>
 
       <div className={`mobile_menu ${menuOpen ? "active" : ""}`}>
-        <a href="#services" onClick={() => { setMenuOpen(false); document.getElementById("services")?.scrollIntoView({ behavior: "smooth" }); }}>Services</a>
+        {navLinks.map((link) => (
+          <a key={link.id} href={`#${link.id}`} onClick={scrollToSection(link.id)}>{link.label}</a>
+        ))}
         <a href="#" onClick={openContact}>Contact Us</a>
       </div>
 

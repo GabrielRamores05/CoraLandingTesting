@@ -1,10 +1,22 @@
+:root {
+  --hero-page-padding: 64px;
+}
+
 /* ══ Hero — 2-column layout ══ */
 .hero {
   background-color: #ffffff;
+  background-image: url('/assets/images/herobackground.png');
+  /* Resize the background to fit the hero section */
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
   width: 100%;
   overflow-x: hidden;
+  padding-top: 62px;
+  /* Ensure there's enough vertical space for the background to display */
+  min-height: 520px;
 }
 
 /* 2-col grid */
@@ -13,7 +25,7 @@
   grid-template-columns: 1.1fr 0.9fr;
   align-items: center;
   gap: 0;
-  padding: 80px 64px 64px;
+  padding: 80px var(--hero-page-padding) 64px;
   max-width: 1280px;
   margin: 0 auto;
   width: 100%;
@@ -26,7 +38,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding-right: 64px;
+  padding-right: var(--hero-page-padding);
   width: 100%;
   min-width: 0;
   overflow-wrap: break-word;
@@ -67,7 +79,7 @@
 
 .hero_description {
   font-size: 16px;
-  color: #6e6e73;
+  color: #111111;
   line-height: 1.75;
   max-width: 480px;
   width: 100%;
@@ -91,7 +103,7 @@
   background-color: #e07b00;
   color: #ffffff;
   border: none;
-  border-radius: 6px;
+  border-radius: 50%;
   padding: 14px 32px;
   font-size: 14px;
   font-weight: 700;
@@ -109,7 +121,7 @@
 
 .hero_cta_microcopy {
   font-size: 11px;
-  color: #9ca3af;
+  color: #111111;
   font-weight: 500;
   letter-spacing: 0.01em;
   max-width: 100%;
@@ -129,9 +141,9 @@
   gap: 6px;
   font-size: 12px;
   font-weight: 600;
-  color: rgb(22, 48, 21);
-  background-color: rgba(22, 48, 21, 0.05);
-  border: 1px solid rgba(22, 48, 21, 0.1);
+  color: #ffffff;
+  background-color: rgb(22, 48, 21);
+  border: 1px solid rgb(22, 48, 21);
   padding: 6px 12px;
   border-radius: 20px;
 }
@@ -139,7 +151,7 @@
 .trust_badge svg {
   width: 14px;
   height: 14px;
-  color: #10b981;
+  color: #ffffff;
   flex-shrink: 0;
 }
 
@@ -463,9 +475,10 @@
 .hero_stat_strip_inner {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 28px 64px;
+  padding: 18px 40px;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0;
 }
 
@@ -473,13 +486,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 2px;
   flex: 0 0 auto;
-  padding: 0 40px;
+  padding: 0 24px;
 }
 
 .hero_stat_num {
-  font-size: 32px;
+  font-size: 24px;
   font-weight: 800;
   color: #e07b00;
   letter-spacing: -0.03em;
@@ -487,28 +500,28 @@
 }
 
 .hero_stat_label {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.55);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-align: center;
 }
 
 .hero_stat_divider {
   width: 1px;
-  height: 44px;
+  height: 30px;
   background: rgba(255, 255, 255, 0.12);
   flex-shrink: 0;
 }
 
 .hero_stat_tagline {
   flex: 1;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.55);
-  line-height: 1.6;
-  padding-left: 40px;
+  line-height: 1.5;
+  padding-left: 24px;
   text-align: right;
   font-style: italic;
 }
@@ -518,7 +531,7 @@
   background-color: #ffffff;
   border-top: 1px solid rgba(22, 48, 21, 0.06);
   overflow: hidden;
-  height: 72px;
+  height: 56px;
   display: flex;
   align-items: center;
   position: relative;
@@ -573,9 +586,9 @@
 }
 
 .carousel_item img {
-  height: 32px;
+  height: 26px;
   width: auto;
-  max-width: 72px;
+  max-width: 64px;
   object-fit: contain;
   opacity: 1;
   mix-blend-mode: multiply;
@@ -604,6 +617,13 @@
     padding: 64px 40px 48px;
     gap: 48px;
   }
+  /* On smaller screens, show the full background image without cropping */
+  .hero {
+    background-size: contain;
+    background-position: center top;
+    background-repeat: no-repeat;
+    min-height: 420px;
+  }
   .hero_content {
     padding-right: 0;
     align-items: center;
@@ -625,6 +645,8 @@
 
 @media (max-width: 640px) {
   .hero_body { padding: 48px 20px 36px; gap: 32px; }
+  /* Mobile: use plain white background for the hero section */
+  .hero { background-image: none; background-color: #ffffff; }
   .hero_content { width: 100%; max-width: 100%; }
   .hero_content { padding-right: 0; }
   .hero_logo { height: 80px; margin-bottom: 16px; }
@@ -646,6 +668,8 @@
   .carousel_list { gap: 36px; padding-right: 36px; }
   .hero_carousel::before,
   .hero_carousel::after { width: 60px; }
+  /* Ensure hero background displays fully on small screens */
+  .hero { background-size: contain; background-position: top center; min-height: 360px; }
 }
 
 @media (max-width: 480px) {
@@ -655,6 +679,7 @@
   .hero_eyebrow { font-size: 10px; letter-spacing: 0.1em; }
   .hero_title { font-size: clamp(20px, 5.6vw, 25px); }
   .hero_mini_app { height: 260px; }
+  .hero { min-height: 320px; background-position: top center; background-size: contain; }
 }
 
 @media (max-width: 400px) {

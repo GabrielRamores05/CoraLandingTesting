@@ -13,6 +13,7 @@ import DataPrivacy from "./components/DataPrivacy";
 import TransparencyVideo from "./components/TransparencyVideo";
 import ComparisonTable from "./components/ComparisonTable";
 import Onboarding from "./components/Onboarding";
+import ROICalculator from "./components/ROICalculator";
 import LiveDemoButton from "./components/LiveDemoButton";
 
 function App() {
@@ -24,17 +25,17 @@ function App() {
 
   return (
     <>
-      <Navbar />
       <Hero />
-      <TransparencyVideo />
-      <Partners />
       <ServingCooperatives />
+      <TransparencyVideo />
       <Challenges />
+      <ROICalculator />
+      <CooperativeChoice />
+      <Partners />
       <Purpose />
       <ComparisonTable />
       <Onboarding />
       <Services />
-      <CooperativeChoice />
       <FAQ />
       <Footer onPrivacyClick={() => setPage("privacy")} />
       <LiveDemoButton />

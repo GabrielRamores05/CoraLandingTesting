@@ -44,7 +44,7 @@
 .footer_cta {
   width: fit-content;
   border: none;
-  border-radius: 999px;
+  border-radius: 25%;
   background: var(--cora-orange);
   color: #ffffff;
   padding: 11px 18px;
